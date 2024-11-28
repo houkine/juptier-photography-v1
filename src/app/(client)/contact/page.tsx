@@ -41,7 +41,7 @@ const Page = () => {
                         />
                         <div className='w-1/2 h-16 mt-16 text-white tracking-widest bg-gray-600 hover:bg-gray-700 flex justify-center items-center'>SEND</div>
                     </div>
-                    <div>111</div>
+                    <div>1111</div>
                 </div>
             </div>
         </div>
