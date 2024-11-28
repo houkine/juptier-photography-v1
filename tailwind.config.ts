@@ -33,8 +33,48 @@ const config: Config = {
         },
 
         fadeIn_aboutContent: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
+
+        fadeIn_galleryContent: {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '0.6',
+          },
+        },
+
+        fadeIn_personalContent: {
+          '0%': {
+            'background-color': 'rgb(0 0 0 / 0)',
+            opacity: '0',
+          },
+          '100%': {
+            'background-color': 'rgb(0 0 0 / 0.3)',
+            opacity: '1',
+          },
+        },
+        fadeIn_personalSectionContent: {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
+        fadeIn_shopSectionContent: {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
         },
       },
       animation: {
@@ -42,8 +82,11 @@ const config: Config = {
         fadeIn_homeText: 'fadeIn_homeText 10s ease-in-out',
         fadeIn_homeButton: 'fadeIn_homeButton 10s ease-in-out',
 
-        fadeIn_aboutContent: 'fadeIn_aboutContent 3s linear',
-        timeline: 'scroll: scroll(root)'
+        fadeIn_aboutContent: 'fadeIn_aboutContent 2s ease-in-out',
+        fadeIn_galleryContent: 'fadeIn_galleryContent 2s ease-in-out',
+        fadeIn_personalContent: 'fadeIn_personalContent 1s ease-in',
+        fadeIn_personalSectionContent: 'fadeIn_personalSectionContent 1s ease-in',
+        fadeIn_shopSectionContent: 'fadeIn_shopSectionContent 1s ease-in',
       },
     },
   },
