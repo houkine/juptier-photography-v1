@@ -14,6 +14,7 @@ const Input = ({ label, value, onChange }: InputType) => {
 }
 
 type InputType = {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
     label: string, value: string, onChange: Function
 }
 export default Input

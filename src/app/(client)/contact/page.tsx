@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { appointmentlistSection } from "@/constant/appointmentPageContent";
 import Image from 'next/image';
 
-const page = () => {
+const Page = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [detail, setDetail] = useState('')
@@ -48,5 +48,4 @@ const page = () => {
     )
 }
 
-const sectionClassNameFix = ''
-export default page
+export default Page

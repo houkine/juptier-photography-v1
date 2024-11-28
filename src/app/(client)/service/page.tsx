@@ -1,12 +1,12 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { personalPhotographySectionlist, personalPhotographyDemolist } from "@/constant/shopPageContent";
 import Image from 'next/image';
 import { BsChevronCompactDown, BsChevronLeft, BsChevronRight, BsCircleFill } from "react-icons/bs";
 import { AppoinmentTime, PhotoType } from './components';
 
-const page = () => {
+const Page = () => {
     const router = useRouter()
     const [bookSection, setBookSection] = useState(bookSectionList[0])
 
@@ -106,4 +106,4 @@ const bookSectionList = [
     'payment detail',
     'order complete',
 ]
-export default page
+export default Page

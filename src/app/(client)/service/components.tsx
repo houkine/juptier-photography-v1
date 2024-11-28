@@ -1,4 +1,4 @@
-import React, { Dispatch, MouseEventHandler, SetStateAction, useEffect, useState } from 'react'
+import React, { MouseEventHandler, useEffect, useState } from 'react'
 import SquareSelectOption, { Theme } from '@/components/client/squareSelectOption';
 
 type PhotoInputType = {
@@ -13,7 +13,12 @@ const BarController = ({ onBack = null, onNext = null }: PhotoInputType) => (
     </div>
 )
 
-const categoryList = [
+interface Category {
+    id: number,
+    title: string,
+    introduction: string,
+}
+const categoryList: Category[] = [
     {
         id: 1,
         title: 'personal',
@@ -35,7 +40,12 @@ const categoryList = [
         introduction: 'include property, business and company events',
     },
 ]
-const optionList = [
+interface Option {
+    id: number,
+    option: string,
+    present: string,
+}
+const optionList: Option[] = [
     {
         id: 1,
         option: '100 shots, 10 photos',
@@ -57,8 +67,13 @@ const optionList = [
         present: "present: one 60*60 photo frame with 9 photos, one 24' photo prame, one album and two Charm Keychains",
     },
 ]
-const IsMakingUp = [true, false]
-const venueList = [
+// const IsMakingUp = [true, false]
+interface Venue {
+    id: number,
+    name: string,
+    place: string | null,
+}
+const venueList: Venue[] = [
     {
         id: 1,
         name: 'indoor venue 1',
@@ -75,13 +90,12 @@ const venueList = [
         place: null,
     },
 ]
-
 const PhotoType = ({ onBack, onNext }: PhotoInputType) => {
-    const [category, setCategory]: any = useState(null)
-    const [option, setOption]: any = useState(null)
-    const [venue, setVenue]: any = useState(null)
-    const [customerPlace, setCustomerPlace]: [string, Dispatch<SetStateAction<string>>] = useState('')
-    const [isMakingUp, setIsMakingUp] = useState('')
+    const [category, setCategory] = useState<Category | null>(null)
+    const [option, setOption] = useState<Option | null>(null)
+    const [venue, setVenue] = useState<Venue | null>(null)
+    const [customerPlace, setCustomerPlace] = useState<string>('')
+    const [isMakingUp, setIsMakingUp] = useState<string>('')
     return (
         <div className='flex flex-col w-full'>
             <div className='flex items-center space-x-8'>
@@ -162,13 +176,13 @@ type AvailableTimeDataType = {
     isAvailable: boolean,
 }
 const getAvailableTime = async () => {
-    let date = new Date()
-    let result: AvailableTimeDataType[] = []
+    const date = new Date()
+    const result: AvailableTimeDataType[] = []
     for (let index = 0; index < 28; index++) {
         date.setDate(date.getDate() + 1)
-        let year = date.getFullYear();
-        let month = String(date.getMonth() + 1).padStart(2, "0");
-        let day = String(date.getDate()).padStart(2, "0");
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
         result.push({
             date: `${year}-${month}-${day}`,
             shift: 'morning',
@@ -191,21 +205,21 @@ const getAvailableTime = async () => {
 const getDataFromDate = (date: string, shift: string, dataset: AvailableTimeDataType[]) =>
     dataset.find((data) => data.date == date && data.shift == shift)
 const getDateList = () => {
-    let result: string[] = []
-    let date = new Date()
+    const result: string[] = []
+    const date = new Date()
     for (let index = 0; index < 28; index++) {
         date.setDate(date.getDate() + 1)
-        let year = date.getFullYear();
-        let month = String(date.getMonth() + 1).padStart(2, "0");
-        let day = String(date.getDate()).padStart(2, "0");
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
         result.push(`${year}-${month}-${day}`)
     }
     return result
 }
 const tableTdClassNameFix = 'w-24 border-2 flex justify-center items-center text-white'
 const AppoinmentTime = ({ onBack, onNext }: PhotoInputType) => {
-    const [availableTime, setAvailableTime]: any[] = useState([])
-    const [time, setTime] = useState()
+    const [availableTime, setAvailableTime] = useState<AvailableTimeDataType[]>([])
+    // const [time, setTime] = useState()
     const dataList: string[] = getDateList()
     console.log(getDataFromDate(dataList[1], 'morning', availableTime));
 
@@ -229,15 +243,15 @@ const AppoinmentTime = ({ onBack, onNext }: PhotoInputType) => {
                     <tbody>
                         <tr className='flex border-2'>
                             <td className={'w-24 border-2 flex justify-center items-center text-white'}>{'morning'}</td>
-                            {availableTime && dataList.map((date, index) => (<td key={index} className={tableTdClassNameFix}>{(availableTime.find((data: any) => data.date == date && data.shift == 'morning')?.isAvailable) ? 'yes' : 'no'}</td>))}
+                            {availableTime && dataList.map((date, index) => (<td key={index} className={tableTdClassNameFix}>{(availableTime.find((data: AvailableTimeDataType) => data.date == date && data.shift == 'morning')?.isAvailable) ? 'yes' : 'no'}</td>))}
                         </tr>
                         <tr className='flex border-2'>
                             <td className={'w-24 border-2 flex justify-center items-center text-white'}>{'afternoon'}</td>
-                            {availableTime && dataList.map((date, index) => (<td key={index} className={tableTdClassNameFix}>{(availableTime.find((data: any) => data.date == date && data.shift == 'afternoon')?.isAvailable) ? 'yes' : 'no'}</td>))}
+                            {availableTime && dataList.map((date, index) => (<td key={index} className={tableTdClassNameFix}>{(availableTime.find((data: AvailableTimeDataType) => data.date == date && data.shift == 'afternoon')?.isAvailable) ? 'yes' : 'no'}</td>))}
                         </tr>
                         <tr className='flex border-2'>
                             <td className={'w-24 border-2 flex justify-center items-center text-white'}>{'evening'}</td>
-                            {availableTime && dataList.map((date, index) => (<td key={index} className={tableTdClassNameFix}>{(availableTime.find((data: any) => data.date == date && data.shift == 'evening')?.isAvailable) ? 'yes' : 'no'}</td>))}
+                            {availableTime && dataList.map((date, index) => (<td key={index} className={tableTdClassNameFix}>{(availableTime.find((data: AvailableTimeDataType) => data.date == date && data.shift == 'evening')?.isAvailable) ? 'yes' : 'no'}</td>))}
                         </tr>
                         {/* <tr>{dataList.map((date, index) => (<td key={index}>{getDataFromDate(date, 'afternoon', availableTime)?.isAvailable ? 'yes' : 'no'}</td>))} </tr>
                     <tr>{dataList.map((date, index) => (<td key={index}>{getDataFromDate(date, 'evening', availableTime)?.isAvailable ? 'yes' : 'no'}</td>))} </tr> */}
@@ -246,6 +260,8 @@ const AppoinmentTime = ({ onBack, onNext }: PhotoInputType) => {
                 </table>
             </div>
             <div> {getDataFromDate(dataList[1], 'morning', availableTime) ? 'no' : 'yes'}</div>
+            <BarController onBack={onBack} onNext={onNext} />
+
         </div>
     )
 }

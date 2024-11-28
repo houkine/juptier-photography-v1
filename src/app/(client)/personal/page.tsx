@@ -5,13 +5,13 @@ import Input from "./input"
 import { BsFacebook, BsWechat, BsGoogle, BsApple, BsInstagram, BsTiktok } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
     const [email, setEmail] = useState(emailDefault)
     const [phone, setPhone] = useState(phoneDefault)
     const [name, setName] = useState(nameDefault)
     const [DOB, setDOB] = useState(DOBDefault)
     const [address, setAddress] = useState(addressDefault)
-    const [linkedAccountList, setLsinkedAccountList] = useState(linkedAccountListDefault)
+    const [linkedAccountList] = useState(linkedAccountListDefault)
     const router = useRouter()
 
     const CancelDetails = () => {
@@ -78,4 +78,4 @@ const linkedAccountListDefault = [
 const SelectedIconClassNameFix = 'h-8 w-8 cursor-pointer text-white'
 const UnSelectedIconClassNameFix = 'h-8 w-8 cursor-pointer text-gray-600 hover:text-gray-400'
 const ButtonClassNameFix = 'w-60 h-12 flex justify-center items-center border-2 cursor-pointer rounded-xl border-white/50 hover:border-white/80 text-gray-200 text-xl hover:font-bold hover:bg-white/20'
-export default page
+export default Page

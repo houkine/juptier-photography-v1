@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { BsPerson } from "react-icons/bs"
-import { Comforter, Roboto_Mono, Cormorant_Garamond } from 'next/font/google'
+import { Comforter } from 'next/font/google'
 
 import routes from '@/constant/routes'
 import { usePathname, useRouter } from 'next/navigation'
@@ -12,8 +12,7 @@ const comforter = Comforter({
   subsets: ["latin"],
   weight: '400',
 })
-const roboto_mono = Roboto_Mono({
-})
+
 const getTextColor = (path: string) => {
   for (let index = 0; index < routes.length; index++) {
     if (routes[index].href.includes(path)) {
@@ -38,8 +37,8 @@ const Header = () => {
         </div>
         <div className={'flex text-base space-x-10 tracking-wider'}>
           {routes.map((route, index) => (
-            <div key={route.id} className={(path == route.href ? 'border-inherit' : 'border-transparent') + style1 + textColor}>
-              <Link href={route.href} className={roboto_mono.className}>{route.title}</Link>
+            <div key={index} className={(path == route.href ? 'border-inherit' : 'border-transparent') + style1 + textColor}>
+              <Link href={route.href} >{route.title}</Link>
             </div>
           ))}
         </div>

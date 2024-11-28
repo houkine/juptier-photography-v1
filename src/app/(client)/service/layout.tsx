@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { serviceSectionlist } from "@/constant/shopPageContent";
 
 const getInfo = (path: string) => {
@@ -17,8 +17,8 @@ const Layout = ({
     children: React.ReactNode;
 }>) => {
     const pathname = usePathname()
-    const router = useRouter()
-    let section = getInfo(pathname)
+    // const router = useRouter()
+    const section = getInfo(pathname)
 
     return (
         <div className="h-screen w-screen flex bg-gradient-to-b from-black to-black/50 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">

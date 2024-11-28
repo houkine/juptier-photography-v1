@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { BsFacebook, BsWechat, BsGoogle, BsApple, BsInstagram, BsTiktok } from "react-icons/bs";
 
-const page = () => {
+const Page = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const router = useRouter()
@@ -46,4 +46,4 @@ const page = () => {
 }
 
 const IconClassNameFix = 'flex flex-wrap text-white/60 hover:text-white/80 space-x-2 items-center'
-export default page
+export default Page

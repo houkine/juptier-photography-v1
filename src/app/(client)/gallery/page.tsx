@@ -1,10 +1,9 @@
 'use client'
 
 import React from 'react'
-import Image from "next/image";
-import { titles, gallery } from "@/constant/galleryPageContent";
+import { gallery } from "@/constant/galleryPageContent";
 
-const page = () => {
+const Page = () => {
     return (
         <div className="h-screen w-screen flex bg-[url('/images/gallery_image/bgimg3.jpeg')] bg-cover">
             <ul className='w-full h-full bg-black/50 overflow-y-auto'>
@@ -25,7 +24,7 @@ const page = () => {
         </div>
     )
 }
-const titleFix = ' text-3xl tracking-wider p-4 hover:text-black flex justify-end items-center '
+// const titleFix = ' text-3xl tracking-wider p-4 hover:text-black flex justify-end items-center '
 
-export default page
+export default Page
 

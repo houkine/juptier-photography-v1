@@ -10,7 +10,7 @@ const ClientLayout = ({
   children: React.ReactNode;
 }>) => {
   const router = useRouter()
-  let pathname = usePathname()
+  const pathname = usePathname()
 
   return (
     <div className="bg-[url('/images/user_image/image1.png')] bg-cover h-screen w-screen flex">
