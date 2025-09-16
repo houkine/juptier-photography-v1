@@ -21,14 +21,14 @@ const Layout = ({
     const section = getInfo(pathname)
 
     return (
-        <div className="h-screen w-screen flex bg-gradient-to-b from-black to-black/50 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+        <div className="h-screen w-screen flex bg-gray-700 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
             <div className='relative w-full flex' id='1'>
                 <img src={section.imgSrc} className='w-screen h-screen animate-fadeIn_shopSectionContent' key={pathname} />
                 <div className='absolute inset-0 w-screen h-screen bg-gradient-to-r from-black flex flex-col'>
                     <div className="flex mt-96 ml-72 ">
                         <div className="flex flex-col border-r-2 border-white/50 justify-center items-end pr-5 space-y-10">
-                            <Link href={'/service#1'}
-                                className={pathname.endsWith('/service') ? linkSelectedClassNameFix : linkUnSelectedClassNameFix}
+                            <Link href={'/service/personal#1'}
+                                className={pathname.endsWith('/service/personal') ? linkSelectedClassNameFix : linkUnSelectedClassNameFix}
                             >
                                 PERSONAL PHOTOGRAPHY
                             </Link>

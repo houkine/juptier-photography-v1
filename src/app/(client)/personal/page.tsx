@@ -22,14 +22,14 @@ const Page = () => {
         setAddress(addressDefault)
     }
     return (
-        <div className="w-full h-full flex flex-col rounded-lg bg-black/30 items-start pt-6 pl-16 animate-fadeIn_personalContent">
+        <div className="w-full h-full flex flex-col rounded-lg bg-black/30 items-start py-6 px-16 animate-fadeIn_personalContent overflow-y-auto">
             <Input label={"EMAIL:"} value={email} onChange={setEmail} />
             <Input label={"PHONE:"} value={phone} onChange={setPhone} />
             <Input label={"NAME:"} value={name} onChange={setName} />
             <Input label={"DATE OF BIRTH:"} value={DOB} onChange={setDOB} />
             <Input label={"ADDRESS:"} value={address} onChange={setAddress} />
             <div className=" mt-12  w-2/3 flex space-x-5 items-center">
-                <div className="text-gray-200 text-xl tracking-wider">LINKED ACCOUNTS:</div>
+                <div className="text-gray-200 text-lg tracking-wider">LINKED ACCOUNTS:</div>
 
                 <BsFacebook
                     className={linkedAccountList.includes('facebook') ? SelectedIconClassNameFix : UnSelectedIconClassNameFix}
@@ -56,7 +56,7 @@ const Page = () => {
                     onClick={() => router.push('http://www.baidu.com')}
                 />
             </div>
-            <div className=" mt-12 border-b-2 border-white/50 text-gray-200 text-2xl tracking-widest cursor-pointer hover:font-bold hover:border-white ">CHANGE PASSWORD</div>
+            <div className=" mt-12 border-b-2 border-white/50 text-gray-200 text-lg tracking-widest cursor-pointer hover:font-bold hover:border-white ">CHANGE PASSWORD</div>
             <div className="mt-12 w-2/3 flex space-x-10">
                 <div className={ButtonClassNameFix} onClick={() => alert('detail saved')}>SAVE</div>
                 <div className={ButtonClassNameFix} onClick={CancelDetails}>CANCEL</div>

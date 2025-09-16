@@ -1,6 +1,5 @@
 'use client'
 import Link from 'next/link'
-import React from 'react'
 import { BsPerson } from "react-icons/bs"
 import { Comforter } from 'next/font/google'
 
@@ -13,31 +12,31 @@ const comforter = Comforter({
   weight: '400',
 })
 
-const getTextColor = (path: string) => {
-  for (let index = 0; index < routes.length; index++) {
-    if (routes[index].href.includes(path)) {
-      return routes[index].text_color
-    }
-  }
-  return ' text-white'
-}
+// const getTextColor = (path: string) => {
+//   for (let index = 0; index < routes.length; index++) {
+//     if (routes[index].href.includes(path)) {
+//       return routes[index].text_color
+//     }
+//   }
+//   return ' text-white'
+// }
 const style1 = ' border-b-2 transition duration-700 hover:border-inherit hover:transition hover:duration-700'
 
 const Header = () => {
   const path = usePathname()
   const router = useRouter()
-  // const textColor = (path == '/' || '') ? ' text-white' : '  text-grey-700'
-  const textColor = getTextColor(path)
+  const textColor = ' text-grey-700'
+  // const textColor = getTextColor(path)
 
   return (
-    <div className='absolute w-full z-10'>
-      <div className='flex justify-between container mx-auto mt-8 items-center'>
+    <div className={(path.includes('service') || path.includes('item') ? 'bg-black/50' : ' ') + ' fixed w-full z-10'}>
+      <div className='flex justify-between container mx-auto mt-8 mb-8 items-center'>
         <div className={comforter.className}>
           <Link className={'text-5xl font-bold cursor-pointer ' + textColor} href={'/'}>Juptier</Link>
         </div>
         <div className={'flex text-base space-x-10 tracking-wider'}>
           {routes.map((route, index) => (
-            <div key={index} className={(path == route.href ? 'border-inherit' : 'border-transparent') + style1 + textColor}>
+            <div key={index} className={(path.includes(route.href) ? 'border-inherit' : 'border-transparent') + style1 + textColor}>
               <Link href={route.href} >{route.title}</Link>
             </div>
           ))}

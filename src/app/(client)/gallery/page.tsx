@@ -5,9 +5,8 @@ import { gallery } from "@/constant/galleryPageContent";
 
 const Page = () => {
     return (
-        <div className="h-screen w-screen flex bg-[url('/images/gallery_image/bgimg3.jpeg')] bg-cover">
-            <ul className='w-full h-full bg-black/50 overflow-y-auto'>
-                <li className='mt-24 h-1 w-full'></li>
+        <div className="h-screen w-screen flex bg-[url('/images/gallery_image/bgimg1.jpg')] bg-cover pt-32 ">
+            <ul className='w-full h-full overflow-y-auto'>
                 {gallery.map((set, index) => (
                     <li className='flex flex-col pt-32 container mx-auto opacity-60 animate-fadeIn_galleryContent hover:opacity-100 transition duration-500' id={set.title} key={index}>
                         <h1 className='text-6xl tracking-widest text-gray-300 ml-10'>{set.title}</h1>
@@ -20,6 +19,7 @@ const Page = () => {
                     </li>
                 ))}
                 <li className='mt-36 h-1 w-full'></li>
+
             </ul>
         </div>
     )

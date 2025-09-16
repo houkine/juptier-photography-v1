@@ -19,14 +19,15 @@ export default [
     },
     {
         id: 4,
+        title: 'SERVICE',
+        href: '/service/personal#1',
+        text_color: ' text-white',
+    },
+    {
+        id: 5,
         title: 'CONTACT',
         href: '/contact',
         text_color: ' text-grey-700',
     },
-    {
-        id: 5,
-        title: 'SERVICE',
-        href: '/service#1',
-        text_color: ' text-white',
-    },
+
 ]
