@@ -44,16 +44,6 @@ const gallery = [
                 src: '/images/gallery_image/image1-1.jpg',
                 alt: 'image1-1',
             },
-            {
-                id: 4,
-                src: '/images/gallery_image/image1-1.jpg',
-                alt: 'image1-1',
-            },
-            {
-                id: 5,
-                src: '/images/gallery_image/image1-1.jpg',
-                alt: 'image1-1',
-            },
         ]
     },
     {
@@ -75,16 +65,6 @@ const gallery = [
             },
             {
                 id: 3,
-                src: '/images/gallery_image/image1-1.jpg',
-                alt: 'image1-1',
-            },
-            {
-                id: 4,
-                src: '/images/gallery_image/image1-1.jpg',
-                alt: 'image1-1',
-            },
-            {
-                id: 5,
                 src: '/images/gallery_image/image1-1.jpg',
                 alt: 'image1-1',
             },
@@ -112,26 +92,6 @@ const gallery = [
                 src: '/images/gallery_image/image1-1.jpg',
                 alt: 'image1-1',
             },
-            {
-                id: 4,
-                src: '/images/gallery_image/image1-1.jpg',
-                alt: 'image1-1',
-            },
-            {
-                id: 5,
-                src: '/images/gallery_image/image1-1.jpg',
-                alt: 'image1-1',
-            },
-            {
-                id: 6,
-                src: '/images/gallery_image/image1-1.jpg',
-                alt: 'image1-1',
-            },
-            {
-                id: 7,
-                src: '/images/gallery_image/image1-1.jpg',
-                alt: 'image1-1',
-            },
         ]
     },
     {
@@ -153,16 +113,6 @@ const gallery = [
             },
             {
                 id: 3,
-                src: '/images/gallery_image/image1-1.jpg',
-                alt: 'image1-1',
-            },
-            {
-                id: 4,
-                src: '/images/gallery_image/image1-1.jpg',
-                alt: 'image1-1',
-            },
-            {
-                id: 5,
                 src: '/images/gallery_image/image1-1.jpg',
                 alt: 'image1-1',
             },

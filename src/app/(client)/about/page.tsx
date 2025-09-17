@@ -2,7 +2,12 @@
 import { MutableRefObject, useEffect, useRef } from "react";
 import Card from "./card";
 import { cardlistSection1, cardlistSection2, cardlistSection3 } from "@/constant/aboutPageContent";
-
+import Link from 'next/link'
+import { Comforter } from 'next/font/google'
+const comforter = Comforter({
+  subsets: ["latin"],
+  weight: '400',
+})
 const AboutPage = () => {
   const section1Ref: MutableRefObject<null> = useRef(null)
   const section2Ref: MutableRefObject<null> = useRef(null)
@@ -32,9 +37,31 @@ const AboutPage = () => {
 
   return (
     <div className='h-screen w-screen overflow-y-scroll overflow-x-hidden snap-y snap-mandatory'>
-      <div className={" bg-[url('/images/about_image/image1.jpg')]" + imageClassNameFix}>
+      {/* <div className={" " + imageClassNameFix}>
         <div className={imageCoverClassNameFix + 'justify-end '} ref={section1Ref}>
-          <div className="flex flex-col justify-center items-start w-3/5 ">
+        </div>
+      </div> */}
+      <div className="snap-always snap-start h-screen w-full flex bg-white"  ref={section1Ref}>
+        <img src={'/images/about_image/image1.jpg'} className="w-1/2"/>
+        <div className="flex flex-col my-auto mx-24">
+          <p className="text-6xl">We are Gold Coast based Photography team & Creative with passion for design</p>
+          <div className={comforter.className}>
+            <p className='text-4xl mt-10'>Juptier Photography Studio</p>
+          </div>
+          <div className="flex mt-20 space-x-10">
+            <div className="flex flex-col space-y-5 w-1/2">
+              <p className="text-2xl font-bold">Work</p>
+              <p className="text-sm">We take pohots, editing them in different ways. We have several templates for them. After that, we can send them directly, or make photo frames, calendar ect.</p>
+              <Link className='font-bold text-xl' href={'/gallery'}>Latest Works →</Link>
+            </div>
+            <div className="flex flex-col space-y-5 w-1/2">
+              <p className="text-2xl font-bold">Contact</p>
+              <p className="text-sm">We take pohots, editing them in different ways. We have several templates for them. After that, we can send them directly, or make photo frames, calendar ect.</p>
+              <Link className='font-bold text-xl' href={'/contact'}>Get in touch →</Link>
+            </div>
+          </div>
+        </div>
+          {/* <div className="flex flex-col justify-center items-start w-3/5 border-2 m-auto">
             <h6 className="w-4/5 text-6xl text-gray-300 font-bold tracking-wider ">
               Juptier Photography Studio
             </h6>
@@ -45,10 +72,9 @@ const AboutPage = () => {
             <div className="flex space-x-5 mt-8">
               {cardlistSection1.map((card, index) => (<Card key={index} imageSrc={card.imageSrc} title={card.title} content={card.content} link={card.link} />))}
             </div>
-          </div>
-        </div>
+          </div> */}
       </div>
-      <div className={" bg-[url('/images/about_image/image2.jpg')]" + imageClassNameFix}>
+      {/* <div className={" bg-[url('/images/about_image/image2.jpg')]" + imageClassNameFix}>
         <div className={imageCoverClassNameFix + 'justify-start '} ref={section2Ref}>
           <div className="flex flex-col justify-center items-start w-3/5 ml-64">
             <h6 className="w-4/5 text-6xl font-bold tracking-wider ">
@@ -79,11 +105,11 @@ const AboutPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
 
-const imageClassNameFix = ' snap-always snap-start h-screen w-full bg-cover flex'
-const imageCoverClassNameFix = ' bg-gradient-to-b from-black/80 w-full h-full flex '
+const imageClassNameFix = ' snap-always snap-start h-screen w-full flex'
+const imageCoverClassNameFix = ' bg-white w-full h-full flex '
 export default AboutPage

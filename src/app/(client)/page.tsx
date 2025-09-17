@@ -23,7 +23,7 @@ const HomePage = () => {
       <div className='flex flex-1 flex-col justify-center items-center text-gray-200'>
         <div key={homeImageSrc[index].id+'1'} className='text-7xl tracking-widest animate-fadeIn_homeText'>{homeImageSrc[index]?.content1}</div>
         <div key={homeImageSrc[index].id+'2'} className='mt-10 text-xl tracking-wider italic leading-8 text-wrap w-2/5 animate-fadeIn_homeText'>{homeImageSrc[index]?.content2}</div>
-        <Link key={homeImageSrc[index].id+'3'} href='/about' className='border-2 py-5 w-1/5 mt-10 flex justify-center text-sm tracking-wider opacity-60 hover:text-white hover:opacity-100 hover:font-bold animate-fadeIn_homeButton'>READ MORE</Link>
+        <Link key={homeImageSrc[index].id+'3'} href='/about' className='border-2 py-5 w-1/5 mt-10 flex justify-center text-sm tracking-wider opacity-60 hover:text-white hover:opacity-100 hover:font-bold animate-fadeIn_homeButton'>View Our Works</Link>
       </div>
       <div className='flex mb-10 space-x-2 justify-center'>
         {homeImageSrc.map((item,i)=>(
