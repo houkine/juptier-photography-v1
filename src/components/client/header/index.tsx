@@ -25,7 +25,7 @@ const style1 = ' border-b-2 transition duration-700 hover:border-inherit hover:t
 const Header = () => {
   const path = usePathname()
   const router = useRouter()
-  const textColor = ' text-grey-700'
+  const textColor = ' text-black'
   // const textColor = getTextColor(path)
 
   return (
