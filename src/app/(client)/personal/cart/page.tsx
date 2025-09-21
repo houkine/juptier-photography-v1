@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import { BsFillTrashFill } from "react-icons/bs";
 const Page = () => {
-    const [cartItemList, setCartItemList] = useState<any>([])
+    const [cartItemList, setCartItemList] = useState<CartItemType[]>([])
 
 
     useEffect(() => {
@@ -81,5 +81,18 @@ const Page = () => {
     )
 }
 
-
+interface CartItemType {
+    id: string,
+    isSelected: boolean,
+    photographyType: {
+        name: string,
+        imgSrc: string,
+    },
+    price: number,
+    date: string,
+    time: string,
+    shots: string,
+    session: string,
+    postscript: string,
+}
 export default Page
