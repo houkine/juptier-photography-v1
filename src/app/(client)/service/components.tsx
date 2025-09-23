@@ -283,16 +283,17 @@ const PriceCard = ({ card }: PriceCardInputType) => {
     return (
         <div className='relative w-[400px] h-[600px] '>
             <img className='w-full rounded-lg' src={card.imgSrc} />
-            <div className='absolute top-0 left-0 w-[400px] h-[600px] flex flex-col bg-white/60 items-center text-black shadow-lg rounded-xl hover:shadow-2xl hover:bg-white/40 transition duration-200' >
-                <h1 className=' text-3xl  mt-16'>{card.name}</h1>
-                <h1 className='text-5xl font-bold mt-2'>{'$ ' + card.price}</h1>
-                <ul className=' mt-40'>
-                    {card.includings.map((content, index) => (
-                        <li key={index} className='text-base font-bold'>{content}</li>
-                    ))}
-                </ul>
-                <Link href={'/item/' + card.id} className='w-64 h-12 mt-6 flex font-bold justify-center items-center text-black border-2 border-gray-700 hover:border-black hover:font-extrabold'>BOOK NOW</Link>
-
+            <div className='absolute top-0 left-0 w-[400px] h-[600px] flex cursor-pointer bg-white/0 shadow-lg rounded-xl hover:shadow-2xl hover:bg-white/40 transition duration-200' >
+                <div className=' flex flex-col text-black items-center w-full m-auto mb-20 py-6 bg-white/50'>
+                    <h1 className=' text-3xl'>{card.name}</h1>
+                    {/* <h1 className='text-5xl font-bold mt-2'>{'$ ' + card.price}</h1> */}
+                    {/* <ul className=' mt-40'>
+                        {card.includings.map((content, index) => (
+                            <li key={index} className='text-base font-bold'>{content}</li>
+                        ))}
+                    </ul> */}
+                    <Link href={'/item/' + card.id} className='w-64 h-12 mt-6 flex font-bold justify-center items-center text-black border-2 border-gray-700 hover:border-black hover:font-extrabold'>BOOK NOW</Link>
+                </div>
             </div>
         </div>
     )

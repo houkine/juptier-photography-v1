@@ -7,7 +7,7 @@ const Layout = ({
     children: React.ReactNode;
 }>) => {
     return (
-        <div className='w-screen h-screen pt-32 overflow-y-auto bg-gray-300'>
+        <div className='w-screen h-screen pt-32 overflow-y-auto bg-white'>
             {children}
         </div>
     )

@@ -34,16 +34,16 @@ const Page = () => {
                     <h1 className='text-xl font-bold mt-2'>{'$ ' + item.price}</h1>
                     <p className='text-base mt-4 whitespace-pre-wrap text-gray-800'>{item.description}</p>
                     <div className='mt-8'>
-                        <label className='text-base font-bold' htmlFor='session'>session:</label>
+                        <label className='text-base font-bold' htmlFor='session'>Session:</label>
                         <select className='ml-4' id='session' value={session} onChange={e => setSession(e.target.value)}>
-                            <option value="1">{'please select...'}</option>
+                            <option value="1">{'Please select...'}</option>
                             <option value="2">{'portrait'}</option>
                             <option value="3">{'individual indoor'}</option>
                             <option value="4">{'individual outdoor'}</option>
                         </select>
                     </div>
                     <div className='mt-4'>
-                        <label className='text-base font-bold' htmlFor='amount'>how many photos you want to take:</label>
+                        <label className='text-base font-bold' htmlFor='amount'>How many photos you want to take:</label>
                         <select className='ml-4' id='amount' value={amount} onChange={e => setAmount(e.target.value)}>
                             <option value="10">{'10'}</option>
                             <option value="15">{'15'}</option>
@@ -57,19 +57,19 @@ const Page = () => {
                         <input className='ml-4' type='date' id='date' value={date} onChange={e => setDate(e.target.value)} />
                         <label className='text-base font-bold ml-8' htmlFor='time'>Time:</label>
                         <select className='ml-4' id='time' value={time} onChange={e => setTime(e.target.value)}>
-                            <option value="9-11">{'9am to 11am'}</option>
-                            <option value="2-4">{'2pm to 4pm'}</option>
-                            <option value="7-9">{'7pm to 9pm'}</option>
+                            <option value="9-11">{'Morning'}</option>
+                            <option value="2-4">{'Afternoon'}</option>
+                            <option value="7-9">{'Evening'}</option>
                         </select>
                     </div>
                     <div className='mt-4 flex flex-col'>
                         <label className='text-base font-bold' htmlFor='postscript'>Postscript:</label>
                         <textarea
                             value={postscript} id='postscript' onChange={e => setPostscript(e.target.value)}
-                            rows={4} className='mt-1'
+                            rows={4} className='mt-1 border-2'
                         />
                     </div>
-                    <Link href={'/item/1'} className='w-2/3 h-12 mt-6 flex font-bold justify-center items-center text-black border-2 border-gray-700 hover:bg-white'>SUBMIT</Link>
+                    <Link href={'/service/personal'} className='w-2/3 h-12 mt-6 flex font-bold justify-center items-center text-black border-2 border-gray-700 hover:bg-white'>SUBMIT</Link>
 
                 </div>
             </div>

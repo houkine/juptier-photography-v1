@@ -9,7 +9,7 @@ export default [
         id: 2,
         title: 'GALLERY',
         href: '/gallery',
-        text_color: ' text-white',
+        text_color: ' text-grey-700',
     },
     {
         id: 3,

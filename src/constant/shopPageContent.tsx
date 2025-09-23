@@ -63,7 +63,7 @@ const personalPhotographyDemolist = [
 const personalPhotographyPricelist = [
     {
         id: "1",
-        name: 'PORTRAIT',
+        name: 'LITE',
         price: 200,
         description: 'You’ll enjoy a fun-filled 90 minute photoshoot with refreshments (e.g. coffee, bubbles). A truly fantastic family bonding experience our guests remember forever!\r\n\r\nYou’ll then enjoy a cinematic viewing of your photoshoot, where you’ll get to choose your favourite image to be beautifully retouched, framed and sent to you with our compliments.\r\n\r\nIf you’d like to buy more photos, we have a wide range of options to chose from including framed artwork and digital collections with prices starting from as little as $395.\r\n\r\nDigital files are sold in collections and range from $75 – $199 per image depending on which collection you choose.',
         imgSrc: '/images/shop_image/demo1.jpg',
@@ -77,8 +77,9 @@ const personalPhotographyPricelist = [
     },
     {
         id: "2",
-        name: 'GROUP SHOTS',
+        name: 'PERSONAL',
         price: 400,
+        description: 'You’ll enjoy a fun-filled 90 minute photoshoot with refreshments (e.g. coffee, bubbles). A truly fantastic family bonding experience our guests remember forever!\r\n\r\nYou’ll then enjoy a cinematic viewing of your photoshoot, where you’ll get to choose your favourite image to be beautifully retouched, framed and sent to you with our compliments.\r\n\r\nIf you’d like to buy more photos, we have a wide range of options to chose from including framed artwork and digital collections with prices starting from as little as $395.\r\n\r\nDigital files are sold in collections and range from $75 – $199 per image depending on which collection you choose.',
         imgSrc: '/images/shop_image/demo2.jpg',
         includings: [
             'Up to 4 Hours',
@@ -90,8 +91,9 @@ const personalPhotographyPricelist = [
     },
     {
         id: "3",
-        name: 'WEDDING',
+        name: 'EVENT',
         price: 800,
+        description: 'You’ll enjoy a fun-filled 90 minute photoshoot with refreshments (e.g. coffee, bubbles). A truly fantastic family bonding experience our guests remember forever!\r\n\r\nYou’ll then enjoy a cinematic viewing of your photoshoot, where you’ll get to choose your favourite image to be beautifully retouched, framed and sent to you with our compliments.\r\n\r\nIf you’d like to buy more photos, we have a wide range of options to chose from including framed artwork and digital collections with prices starting from as little as $395.\r\n\r\nDigital files are sold in collections and range from $75 – $199 per image depending on which collection you choose.',
         imgSrc: '/images/shop_image/demo3.jpg',
         includings: [
             'Up to 7 Hours',

@@ -12,24 +12,24 @@ const comforter = Comforter({
   weight: '400',
 })
 
-// const getTextColor = (path: string) => {
-//   for (let index = 0; index < routes.length; index++) {
-//     if (routes[index].href.includes(path)) {
-//       return routes[index].text_color
-//     }
-//   }
-//   return ' text-white'
-// }
+const getTextColor = (path: string) => {
+  for (let index = 0; index < routes.length; index++) {
+    if (routes[index].href.includes(path)) {
+      return routes[index].text_color
+    }
+  }
+  return ' text-white'
+}
 const style1 = ' border-b-2 transition duration-700 hover:border-inherit hover:transition hover:duration-700'
 
 const Header = () => {
   const path = usePathname()
   const router = useRouter()
-  const textColor = ' text-black'
-  // const textColor = getTextColor(path)
+  // const textColor = ' text-black'
+  const textColor = getTextColor(path)
 
   return (
-    <div className={(path.includes('service') || path.includes('item') ? 'bg-black/50' : ' ') + ' fixed w-full z-10'}>
+    <div className={'fixed w-full z-10'}>
       <div className='flex justify-between container mx-auto mt-8 mb-8 items-center'>
         <div className={comforter.className}>
           <Link className={'text-5xl font-bold cursor-pointer ' + textColor} href={'/'}>Juptier</Link>
