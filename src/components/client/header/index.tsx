@@ -5,6 +5,7 @@ import { Comforter } from 'next/font/google'
 
 import routes from '@/constant/routes'
 import { usePathname, useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 // Juptier Photography Studio
 
 const comforter = Comforter({
@@ -27,9 +28,19 @@ const Header = () => {
   const router = useRouter()
   // const textColor = ' text-black'
   const textColor = getTextColor(path)
-
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header')
+      console.log(window.pageYOffset)
+      if (window.pageYOffset >= 200) {  //if语句判断window页面Y方向的位移是否大于或者等于导航栏的height像素值
+        header?.classList.add('bg-black/20');  //当Y方向位移大于80px时，定义的变量增加一个新的样式'header_bg'
+      } else {
+        header?.classList.remove('bg-black/20'); //否则就移除'header_bg'样式
+      }
+    }, true)
+  }, [])
   return (
-    <div className={'fixed w-full z-10'}>
+    <div className={'fixed w-full z-10'} id='header'>
       <div className='flex justify-between container mx-auto mt-8 mb-8 items-center'>
         <div className={comforter.className}>
           <Link className={'text-5xl font-bold cursor-pointer ' + textColor} href={'/'}>Juptier</Link>
@@ -46,5 +57,7 @@ const Header = () => {
     </div>
   )
 }
+
+
 
 export { Header }
