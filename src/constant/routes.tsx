@@ -21,7 +21,7 @@ export default [
         id: 4,
         title: 'SERVICE',
         href: '/service/personal#1',
-        text_color: ' text-white',
+        text_color: ' text-grey-700',
     },
     {
         id: 5,

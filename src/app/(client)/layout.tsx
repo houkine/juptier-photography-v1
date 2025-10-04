@@ -9,7 +9,6 @@ const ClientLayout = ({
   return (
     <>
       <Header />
-      <Shadow />
       {children}
     </>
   );

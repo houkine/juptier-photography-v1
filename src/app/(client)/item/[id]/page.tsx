@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { personalPhotographyPricelist } from "@/constant/shopPageContent";
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 // const page = async ({
@@ -17,6 +17,13 @@ const Page = () => {
     const [time, setTime] = useState('9-11')
     const [postscript, setPostscript] = useState('')
     const { id } = useParams()
+
+    const router = useRouter()
+
+    const SubmitOnClick = () =>{
+        alert('item has been added to your cart.')
+        router.push('/personal/cart')
+    }
 
     useEffect(() => {
         console.log(date);
@@ -69,7 +76,8 @@ const Page = () => {
                             rows={4} className='mt-1 border-2'
                         />
                     </div>
-                    <Link href={'/service/personal'} className='w-2/3 h-12 mt-6 flex font-bold justify-center items-center text-black border-2 border-gray-700 hover:bg-white'>SUBMIT</Link>
+                    <div className='w-2/3 h-12 mt-6 flex font-bold justify-center items-center text-black border-2 border-gray-700 hover:bg-white' onClick={SubmitOnClick}>SUBMIT</div>
+                    {/* <Link href={'/service/personal'} className='w-2/3 h-12 mt-6 flex font-bold justify-center items-center text-black border-2 border-gray-700 hover:bg-white'>SUBMIT</Link> */}
 
                 </div>
             </div>

@@ -32,9 +32,6 @@ const page = () => {
                     {personalPhotographyPricelist.map((card, index) =>
                         <li className='inline-block' key={index}><PriceCard card={card} /></li>
                     )}
-                    {/* <li className='inline-block'><PriceCard /></li>
-                    <li className='inline-block'><PriceCard /></li>
-                    <li className='inline-block'><PriceCard /></li> */}
                 </ul>
             </div>
             <div className='w-full h-24'></div>
