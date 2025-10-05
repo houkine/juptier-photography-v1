@@ -92,7 +92,7 @@ const CalendarDate = ({ date }: CalendarDateInputType) => {
                 {confirmations.map((confirmation, index) => (
                     <li
                         key={index}
-                        className={'flex flex-col p-2' + GetCardColour(confirmation.time)}
+                        className={'flex flex-col p-2 justify-center' + GetCardColour(confirmation.time)}
                     >
                         {/* <p className='text-lg'>{confirmation.time}</p> */}
                         <p className='text-sm text-center'>{confirmation.photographyType}</p>
