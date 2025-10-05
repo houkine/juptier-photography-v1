@@ -6,7 +6,6 @@ import { Comforter } from 'next/font/google'
 import routes from '@/constant/routes'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import { log } from 'node:console'
 // Juptier Photography Studio
 
 const comforter = Comforter({
@@ -15,12 +14,15 @@ const comforter = Comforter({
 })
 
 const getTextColor = (path: string) => {
+
+  if (path == '/personal' || path == '/')
+    return ' text-white'
   for (let index = 1; index < routes.length; index++) {
     if (routes[index].href.includes(path) && path != '/personal' && path != '/') {
       return routes[index].text_color
     }
   }
-  return ' text-white'
+  return ' text-grey-700'
 }
 const style1 = ' border-b-2 transition duration-700 hover:border-inherit hover:transition hover:duration-700'
 
@@ -32,7 +34,7 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener('scroll', () => {
       const header = document.getElementById('header')
-      if (window.pageYOffset >= 200) {  //if语句判断window页面Y方向的位移是否大于或者等于导航栏的height像素值
+      if (window.pageYOffset >= 100) {  //if语句判断window页面Y方向的位移是否大于或者等于导航栏的height像素值
         header?.classList.add('bg-white/85');  //当Y方向位移大于80px时，定义的变量增加一个新的样式'header_bg'
       } else {
         header?.classList.remove('bg-white/85'); //否则就移除'header_bg'样式
@@ -47,7 +49,7 @@ const Header = () => {
         </div>
         <div className={'flex text-base space-x-10 tracking-wider'}>
           {routes.map((route, index) => (
-            <div key={index} className={((route.href.includes(path) && path!='/'&& path!='/personal') ? 'border-inherit' : 'border-transparent') + style1 + textColor}>
+            <div key={index} className={((route.href.includes(path) && path != '/' && path != '/personal') ? 'border-inherit' : 'border-transparent') + style1 + textColor}>
               <Link href={route.href} >{route.title}</Link>
             </div>
           ))}

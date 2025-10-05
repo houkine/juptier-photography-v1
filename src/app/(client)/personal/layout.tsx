@@ -27,7 +27,7 @@ const ClientLayout = ({
             <div className='w-2/3 h-6' />
             <Link href={'/user/signin'} className='w-32 h-12 flex justify-center items-center cursor-pointer text-gray-200 text-xl hover:text-white hover:font-bold' >LOG OUT</Link>
           </div>
-          <div className='flex w-4/5 '>{children}</div>
+          <div className='flex w-4/5 border-2'>{children}</div>
         </div>
       </div>
     </div>

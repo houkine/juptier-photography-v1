@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { personalPhotographyPricelist } from "@/constant/shopPageContent";
 import React, { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 // const page = async ({
 //     params,
@@ -20,7 +19,7 @@ const Page = () => {
 
     const router = useRouter()
 
-    const SubmitOnClick = () =>{
+    const SubmitOnClick = () => {
         alert('item has been added to your cart.')
         router.push('/personal/cart')
     }
