@@ -13,7 +13,7 @@ const Calendar = () => {
 
     return (
         <div className='w-full h-full flex flex-col'>
-            <div className='w-full flex bg-white/30 py-4 space-x-12 justify-center rounded-xl'>
+            <div className='flex bg-white/30 py-4 space-x-12 justify-center rounded-xl '>
                 <div className='flex flex-col my-auto'>
                     <div className='flex'>
                         <p className='text-white text-sm my-auto w-8 flex justify-end'>from</p>

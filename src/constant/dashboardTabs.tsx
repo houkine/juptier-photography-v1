@@ -17,8 +17,8 @@ const dashboardTabs = [
     },
     {
         id: 4,
-        title: 'Confirmation',
-        href: '/admin/dashboard/confirmation',
+        title: 'Orders',
+        href: '/admin/dashboard/orders',
     },
     {
         id: 5,

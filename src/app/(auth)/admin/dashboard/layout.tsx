@@ -15,7 +15,7 @@ const ClientLayout = ({
 
     return (
         <div className=" w-full h-full flex">
-            <ul className=" w-1/6 mt-6">
+            <ul className=" w-64 mt-6">
                 {dashboardTabs.map((dashboardTab, index) => (
                     <li
                         className={path == dashboardTab.href ? TabSelectedClassname : TabUnSelectedClassname} key={index}
@@ -25,8 +25,8 @@ const ClientLayout = ({
                     </li>
                 ))}
             </ul>
-            <div className='w-4/6 h-full flex'>
-                <div className="w-full m-12 bg-white/30">{children}</div>
+            <div className='w-full h-full flex'>
+                <div className="w-full m-12">{children}</div>
             </div>
             <div className='w-1/6 h-full flex'>
                 <div className="w-full my-12 mx-4 "><Calendar /></div>

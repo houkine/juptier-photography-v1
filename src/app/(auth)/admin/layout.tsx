@@ -8,7 +8,7 @@ const ClientLayout = ({
 }>) => {
 
     return (
-        <div className="bg-[url('/images/user_image/image1.png')] bg-cover h-screen w-screen flex">
+        <div className="bg-[url('/images/admin_image/image2.jpg')] bg-cover h-screen w-screen flex">
             {children}
         </div>
     )
