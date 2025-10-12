@@ -1,7 +1,9 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { ThemeContext } from './ThemeContext'
 
 const Calendar = () => {
+    const theme = useContext(ThemeContext);
     // const [dateList,setDateList] =useState([])
     const [startDate, setStartDate] = useState(GetDateFormat(new Date()))
     const [endDate, setEndDate] = useState(GetDateFormat((new Date((new Date()).valueOf() + ONE_DAY_DATE_VALUEOF_GAP * 6))))
@@ -13,7 +15,7 @@ const Calendar = () => {
 
     return (
         <div className='w-full h-full flex flex-col'>
-            <div className='flex bg-white/30 py-4 space-x-12 justify-center rounded-xl '>
+            <div className={'flex py-4 space-x-12 justify-center rounded-xl ' + theme}>
                 <div className='flex flex-col my-auto'>
                     <div className='flex'>
                         <p className='text-white text-sm my-auto w-8 flex justify-end'>from</p>
@@ -62,6 +64,7 @@ type CalendarDateListInputType = {
     endDate: string,
 }
 const CalendarDate = ({ date }: CalendarDateInputType) => {
+    const theme = useContext(ThemeContext);
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-indexed
     const day = date.getDate().toString().padStart(2, '0');
@@ -81,7 +84,7 @@ const CalendarDate = ({ date }: CalendarDateInputType) => {
         }
     }
     return (
-        <li className='flex bg-white/30 p-4 rounded-lg mr-2'>
+        <li className={'flex p-4 rounded-lg mr-2 ' + theme}>
             <div className='flex flex-col w-16 h-full text-white '>
                 <p className='text-xs'>{year}</p>
                 <p className='text-sm'>{month + '月'}</p>
@@ -138,7 +141,7 @@ const GetDateFormat = (date: Date): string => {
 const confirmationList = [
     {
         id: '1',
-        date: '05-10-2025',
+        date: '15-10-2025',
         time: 'morning',
         photographyType: 'Portrait',
         location: 'UQ campus',
@@ -146,7 +149,7 @@ const confirmationList = [
     },
     {
         id: '2',
-        date: '06-10-2025',
+        date: '16-10-2025',
         time: 'morning',
         photographyType: 'lite',
         location: 'UQ campus',
@@ -154,7 +157,7 @@ const confirmationList = [
     },
     {
         id: '3',
-        date: '06-10-2025',
+        date: '16-10-2025',
         time: 'afternoon',
         photographyType: 'Portrait',
         location: 'UQ campus',
@@ -162,7 +165,7 @@ const confirmationList = [
     },
     {
         id: '4',
-        date: '06-10-2025',
+        date: '16-10-2025',
         time: 'evening',
         photographyType: 'Portrait',
         location: 'UQ campus',
@@ -170,7 +173,7 @@ const confirmationList = [
     },
     {
         id: '5',
-        date: '08-10-2025',
+        date: '18-10-2025',
         time: 'morning',
         photographyType: 'wedding',
         location: 'UQ campus',
@@ -178,7 +181,7 @@ const confirmationList = [
     },
     {
         id: '6',
-        date: '09-10-2025',
+        date: '19-10-2025',
         time: 'morning',
         photographyType: 'Portrait',
         location: 'UQ campus',
@@ -186,5 +189,5 @@ const confirmationList = [
     },
 ]
 
-const DateInputClassname = 'text-sm appearance-none outline-none bg-transparent ml-4 border-b-2 border-gray-400'
+const DateInputClassname = 'text-sm appearance-none outline-none bg-transparent ml-4 border-b-2 border-gray-400 text-white'
 export default Calendar

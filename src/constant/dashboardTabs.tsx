@@ -27,8 +27,13 @@ const dashboardTabs = [
     },
     {
         id: 6,
-        title: 'Views',
-        href: '/admin/dashboard/views',
+        title: 'Gallery',
+        href: '/admin/dashboard/gallery',
+    },
+    {
+        id: 6,
+        title: 'Settings',
+        href: '/admin/dashboard/settings',
     },
 ]
 

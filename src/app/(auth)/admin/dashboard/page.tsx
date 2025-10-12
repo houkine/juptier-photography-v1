@@ -1,7 +1,8 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import React, { } from 'react'
+import React, { useContext } from 'react'
 import { BsPencilFill, BsTrashFill, BsCheckLg } from "react-icons/bs";
+import { ThemeContext } from './ThemeContext';
 
 const Page = () => {
     return (
@@ -35,7 +36,7 @@ const Analysis = () => {
 }
 const AnalysisTab = ({ title, number, rate }: AnalysisTabtype) => {
     return (
-        <div className={'w-full rounded-lg p-2 h-24 ' + (rate < 0 ? 'bg-red-300/30' : 'bg-green-300/30')}>
+        <div className={'w-full rounded-lg p-2 h-24 ' + (rate < 0 ? 'bg-red-300/20' : 'bg-green-300/20')}>
             <div className='flex '>
                 <p className=' text-base text-white '>{title}</p>
                 <p className={' text-base m-auto mr-4 ' + (rate < 0 ? 'text-red-300' : 'text-green-300')}>{(rate > 0 ? '+ ' : ' ') + rate * 100 + '%'}</p>
@@ -66,10 +67,11 @@ const NewMessage = () => {
 }
 const NewMessageTab = ({ title, number, href }: NewMessageTabtype) => {
     const router = useRouter()
+    const theme = useContext(ThemeContext);
 
     return (
         <div
-            className='w-full bg-white/30 rounded-lg p-2 h-24 hover:bg-white/40 cursor-pointer'
+            className={'w-full rounded-lg p-2 h-24 hover:bg-white/40 cursor-pointer ' + theme}
             onClick={() => router.push(href)}
         >
             <div className='flex '>
@@ -86,8 +88,9 @@ type NewMessageTabtype = {
 }
 
 const Upcomings = () => {
+    const theme = useContext(ThemeContext);
     return (
-        <div className='h-full w-full bg-white/30 rounded-lg'>
+        <div className={'h-full w-full rounded-lg ' + theme}>
             <div className='ml-8 mt-4 text-xl'>Upcomings</div>
             <UpcomingsTableHeader />
             <div className=''>
@@ -99,7 +102,7 @@ const Upcomings = () => {
     )
 }
 const UpcomingsTableHeader = () => (
-    <div className=' h-12 w-full flex text-white bg-white/30 mt-4'>
+    <div className=' h-12 w-full flex text-white bg-white/20 mt-4'>
         <p className='w-16 h-full text-sm flex items-center justify-center ml-4'>{'id'}</p>
         <p className='w-28 h-full text-sm flex items-center justify-center'>{'type'}</p>
         <p className='w-96 h-full text-sm flex items-center justify-center'>{'location'}</p>
@@ -110,7 +113,7 @@ const UpcomingsTableHeader = () => (
     </div>
 )
 const UpcomingsTableRecord = ({ record }: UpcomingsRecordTabtypeInout) => (
-    <div className={' h-12 w-full flex text-white border-b-2 border-white/30 hover:bg-white/30 cursor-pointer'}>
+    <div className={' h-12 w-full flex text-white border-b-2 border-white/30 hover:bg-white/20 cursor-pointer'}>
         <p className='w-16 h-full text-sm flex items-center justify-center ml-4'>{record.id}</p>
         <p className='w-28 h-full text-sm flex items-center justify-center'>{record.type}</p>
         <p className='w-96 h-full text-sm flex items-center justify-center'>{record.location}</p>
@@ -164,8 +167,9 @@ const UpcomingList = [
 ]
 
 const UpdatedOrders = () => {
+    const theme = useContext(ThemeContext);
     return (
-        <div className='h-full w-full bg-white/30 rounded-lg flex flex-col'>
+        <div className={'h-full w-full rounded-lg flex flex-col ' + theme}>
             <div className='ml-8 mt-4 text-xl flex'>Updated Orders</div>
             <UpdatedOrdersTableHeader />
             <div className='flex flex-col overflow-y-auto'>
@@ -177,7 +181,7 @@ const UpdatedOrders = () => {
     )
 }
 const UpdatedOrdersTableHeader = () => (
-    <div className=' h-12 w-full flex text-white bg-white/30 mt-4'>
+    <div className=' h-12 w-full flex text-white bg-white/20 mt-4'>
         <p className='w-16 h-full text-sm flex items-center justify-center ml-4'>{'id'}</p>
         <p className='w-28 h-full text-sm flex items-center justify-center'>{'type'}</p>
         <p className='w-96 h-full text-sm flex items-center justify-center'>{'location'}</p>
@@ -188,14 +192,14 @@ const UpdatedOrdersTableHeader = () => (
     </div>
 )
 const UpdatedOrdersTableRecord = ({ record }: UpdatedOrdersRecordTabtypeInout) => (
-    <div className={' h-12 w-full flex text-white border-b-2 border-white/30 hover:bg-white/30 cursor-pointer'}>
+    <div className={' h-12 w-full flex text-white border-b-2 border-white/30 hover:bg-white/20 cursor-pointer'}>
         <p className='w-16 h-full text-sm flex items-center justify-center ml-4'>{record.id}</p>
         <p className='w-28 h-full text-sm flex items-center justify-center'>{record.type}</p>
         <p className='w-96 h-full text-sm flex items-center justify-center'>{record.location}</p>
         <p className='w-32 h-full text-sm flex items-center justify-center'>{record.date}</p>
         <p className='w-48 h-full text-sm flex items-center justify-center'>{record.time}</p>
         <p className='w-64 h-full text-sm flex items-center justify-center'>{record.user}</p>
-        <div className='flex h-8 m-auto'>
+        <div className='flex h-8 w-24 ml-0'>
             <BsPencilFill className='h-full ' />
             <BsTrashFill className='h-full ml-4' />
             <BsCheckLg className='h-full ml-4' />
