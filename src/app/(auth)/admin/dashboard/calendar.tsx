@@ -189,5 +189,5 @@ const confirmationList = [
     },
 ]
 
-const DateInputClassname = 'text-sm appearance-none outline-none bg-transparent ml-4 border-b-2 border-gray-400 text-white'
+const DateInputClassname = 'text-sm appearance-none outline-none bg-transparent ml-4 border-b-2 border-gray-400 text-white dark:[color-scheme:dark] '
 export default Calendar

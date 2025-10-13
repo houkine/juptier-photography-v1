@@ -15,7 +15,7 @@ const ClientLayout = ({
 }>) => {
     const path = usePathname()
     const router = useRouter()
-    const [theme, SetTheme] = useState(THEME_BACKGROUNDCOLOR_WHITE)
+    const [theme, SetTheme] = useState(THEME_BACKGROUNDCOLOR_BLACK)
 
     return (
         <div className=" w-full h-full flex">

@@ -1,19 +1,20 @@
 'use client'
-import OrderCreation, { EnquiryType } from '@/components/admin/OrderCreation/OrderCreation'
+import OrderEditor, { EnquiryType } from '@/components/admin/OrderEditor/OrderEditor'
 import React, { Dispatch, SetStateAction, useContext, useState } from 'react'
 import { ThemeContext } from '../ThemeContext'
-import { BsCheckCircleFill, BsFillReplyFill, BsXCircleFill } from 'react-icons/bs'
+import { BsCheckCircleFill, BsFillReplyFill, BsXCircleFill, BsCaretDownFill, BsCaretUpFill, BsCalendarHeart, BsCartCheck } from 'react-icons/bs'
+import Pagenation from '@/components/admin/Pagenation/Pagenation'
 
 const Page = () => {
     const [enquiry, setEnquiry] = useState<EnquiryType | null>(null)
     return (
-        <div className='w-full h-full flex'>
-            <div className='h-full w-2/3 flex flex-col'>
+        <div className='w-full h-full flex space-x-4'>
+            <div className='h-full w-2/3 flex flex-col space-y-4'>
                 <div className='h-1/2 w-full flex'> <ComingEnquiries onOrderGenerate={setEnquiry} /></div>
 
                 <div className='h-1/2 w-full flex'><EnquiryHistory /></div>
             </div>
-            <div className='h-full w-1/3 flex '><OrderCreation enquiry={enquiry} /></div>
+            <div className='h-full w-1/3 flex '><OrderEditor enquiry={enquiry} /></div>
 
         </div>
     )
@@ -21,14 +22,23 @@ const Page = () => {
 
 const ComingEnquiries = ({ onOrderGenerate }: ComingEnquiriesInputType) => {
     const theme = useContext(ThemeContext);
+    const [take, setTake] = useState(5)
+
+
     return (
         <div className={'w-full h-full flex flex-col rounded-lg ' + theme}>
             <div className='mt-4 h-18 flex'>
                 <p className='ml-8 text-xl'>Coming Enquiries</p>
-                <div></div>
+                <Pagenation
+                    take={take} handleTakeOnChange={setTake} takeOptions={takeOptions}
+                    recordStartIndex={1} recordEndIndex={take} totalRecords={10}
+                    className='h-12 m-auto mr-8 flex items-center'
+                />
+
             </div>
             <div className='w-full h-32 flex text-white bg-white/20 mt-4'>
-                <p className={OrderTabClassname + ' w-72 ml-4'}>{'id'}</p>
+                <p className={OrderTabClassname + ' w-16'}>{''}</p>
+                <p className={OrderTabClassname + ' w-72'}>{'id'}</p>
                 <p className={OrderTabClassname + ' w-48'}>{'session'}</p>
                 <p className={OrderTabClassname + ' w-32'}>{'created at'}</p>
                 <p className={OrderTabClassname + ' w-24'}>{'appoinment'}</p>
@@ -200,20 +210,59 @@ const EnquiryHistory = () => {
     )
 }
 const EnquiryRecord = ({ enquiry, onOrderGenerate }: EnquiryRecordInputType) => {
+    const [isExtended, setIsExtended] = useState<boolean>(false)
     return (
-        <li className={' h-24 w-full flex text-white border-b-2 border-white/30 hover:bg-white/20 cursor-pointer'}>
-            <p className={OrderTabClassname + ' w-72 ml-4'}>{enquiry.id}</p>
-            <p className={OrderTabClassname + ' w-48'}>{enquiry.session + ', ' + enquiry.type}</p>
-            <p className={OrderTabClassname + ' w-32'}>{enquiry.created}</p>
-            <p className={OrderTabClassname + ' w-24'}>{enquiry.appointments.length > 0 ? '√' : '×'}</p>
-            <p className={OrderTabClassname + ' w-20'}>{enquiry.products.length > 0 ? '√' : '×'}</p>
-            <p className={OrderTabClassname + ' w-32'}>{'$' + enquiry.price}</p>
-            <p className={OrderTabClassname + ' w-32'}>{enquiry.status}</p>
-            <div className='flex h-full flex-grow justify-center items-center'>
-                <BsFillReplyFill className='h-full ' />
-                <BsXCircleFill className='h-full ml-4' />
-                <BsCheckCircleFill className='h-full ml-4' onClick={() => onOrderGenerate(enquiry)} />
+        <li className={' w-full flex flex-col text-white border-b-2 border-white/30 hover:bg-white/20'}>
+            <div className='h-20 w-full flex'>
+                <p className={OrderTabClassname + ' w-16'}>{isExtended ?
+                    <BsCaretUpFill size={15} className='cursor-pointer' onClick={() => setIsExtended(false)} /> :
+                    <BsCaretDownFill size={15} className='cursor-pointer' onClick={() => setIsExtended(true)} />}
+                </p>
+                <p className={OrderTabClassname + ' w-72'}>{enquiry.id}</p>
+                <p className={OrderTabClassname + ' w-48'}>{enquiry.session + ', ' + enquiry.type}</p>
+                <p className={OrderTabClassname + ' w-32'}>{enquiry.created}</p>
+                <p className={OrderTabClassname + ' w-24'}>{enquiry.appointments.length > 0 ? '√' : '×'}</p>
+                <p className={OrderTabClassname + ' w-20'}>{enquiry.products.length > 0 ? '√' : '×'}</p>
+                <p className={OrderTabClassname + ' w-32'}>{'$' + enquiry.price}</p>
+                <p className={OrderTabClassname + ' w-32'}>{enquiry.status}</p>
+                <div className='flex h-full flex-grow justify-center items-center'>
+                    <BsFillReplyFill className='h-full cursor-pointer ' title='email' />
+                    <BsXCircleFill className='h-full ml-4 cursor-pointer' title='mark as read' />
+                    <BsCheckCircleFill className='h-full ml-4 cursor-pointer' title='generate order' onClick={() => onOrderGenerate(enquiry)} />
+                </div>
             </div>
+            {isExtended && <div className='min-h-24 py-2 w-full flex'>
+                <div className='flex flex-col ml-4 w-48 items-center space-y-2'>
+                    <p>{'pan'}</p>
+                    <p>{'pan@email.com'}</p>
+                </div>
+                <p className='flex text-wrap w-1/3 ml-4 text-sm'>{fakeText}</p>
+                <div className='flex flex-col items-center text-sm ml-4 bg-white/20 rounded-md p-2'>
+                    <BsCalendarHeart size={20} />
+                    <div className='flex flex-col m-auto'>
+                        <p className='flex text-wrap'>{'UQ campus'}</p>
+                        <p>{'2025-10-03 9am'}</p>
+                        <p>{'2h'}</p>
+                    </div>
+                </div>
+                <div className='flex flex-col items-center text-sm ml-4 bg-white/20 rounded-md p-2'>
+                    <BsCartCheck size={20} />
+                    <div className='flex flex-col m-auto'>
+                        <p className='flex text-wrap'>{'album' + ', *' + 1}</p>
+                        <p>{'A4 20photos style1'}</p>
+                        <p>{'photo with campus'}</p>
+                    </div>
+                </div>
+                <div className='flex flex-col items-center text-sm ml-4 bg-white/20 rounded-md p-2'>
+                    <BsCartCheck size={20} />
+                    <div className='flex flex-col m-auto'>
+                        <p className='flex text-wrap'>{'album' + ', *' + 1}</p>
+                        <p>{'A4 20photos style1'}</p>
+                        <p>{'photo with campus'}</p>
+                    </div>
+                </div>
+            </div>}
+
         </li>
 
     )
@@ -245,5 +294,6 @@ type EnquiryRecordInputType = {
 
 // }
 const OrderTabClassname = 'h-full text-sm flex items-center justify-center'
-
+const takeOptions = [1, 2, 3, 4, 5]
+const fakeText = 'You’ll then enjoy a cinematic viewing of your photoshoot, where you’ll get to choose your favourite image to be beautifully retouched, framed and sent to you with our compliments.If you’d like to buy more photos, we have a wide range of options to chose from including framed artwork and digital collections with prices starting from as little as $395.'
 export default Page
