@@ -65,6 +65,7 @@ const OrderList = [
         balancePaymentTime: '2025-10-04',
         finaliseTime: '2025-10-05',
         Postscript: 'hello I want to take photo',
+        remark: 'he is a good man',
     },
 ]
 const Appoinment = {
@@ -74,7 +75,7 @@ const Appoinment = {
     location: 'UQ campus',
     time: '2025-10-03 9am',
     duration: '2h',
-    Postscript: 'photo with campus',
+    postscript: 'photo with campus',
 
 }
 
@@ -87,7 +88,7 @@ const Product = {
     type: 'A4 20photos style1',
     quantity: 1,
     price: 20,
-    Postscript: 'photo with campus',
+    postscript: 'photo with campus',
 
 }
 const OrderTabClassname = 'h-full text-sm flex items-center justify-center '

@@ -1,13 +1,13 @@
 'use client'
 
 import { ThemeContext } from "@/app/(auth)/admin/dashboard/ThemeContext";
-import { Children, Dispatch, SetStateAction, useContext, useState } from "react"
-import { BsSearch } from "react-icons/bs";
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react"
+import { BsSearch, BsPlusCircleFill, BsXCircleFill, BsCheckLg } from "react-icons/bs";
 
-const OrderEditor = ({ enquiry }: OrderCreationInputType) => {
+const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
     const theme = useContext(ThemeContext);
 
-    const [orderId, setOrderId] = useState<string | null>(null)
+    const [orderId, setOrderId] = useState<string>('')
 
 
     const [isHavingUser, setIsHavingUser] = useState<boolean>(true)
@@ -24,7 +24,31 @@ const OrderEditor = ({ enquiry }: OrderCreationInputType) => {
     const [video, setVideo] = useState<string>('')
     const [duration, setDuration] = useState<string>('')
 
-    const [price, setPrice] = useState<string | null>(null)
+    const [appoinmentList, setAppoinmentList] = useState<AppoinmentType[]>([])
+    const [productList, setProductList] = useState<ProductType[]>([])
+
+    const [postscript, setPostscript] = useState<string>('')
+
+    const [status, setStatus] = useState<string>('')
+    const [depositPaymentTime, setDepositPaymentTime] = useState<string>('')
+    const [shootingCompleteTime, setShootingCompleteTime] = useState<string>('')
+    const [balancePaymentTime, setBalancePaymentTime] = useState<string>('')
+    const [finaliseTime, setFinaliseTime] = useState<string>('')
+
+    const [totalPrice, setTotalPrice] = useState<number>(0)
+    const [depositPrice, setDepositPrice] = useState<number>(0)
+    const [balancePrice, setBalancePrice] = useState<number>(0)
+
+    const [remark, setRemark] = useState<string>('')
+
+    useEffect(() => {
+
+    }, [enquiry])
+
+    useEffect(() => {
+        if (order)
+            setOrderId(order.id)
+    }, [order])
 
     const GetUserById = () => {
         // userId
@@ -33,7 +57,7 @@ const OrderEditor = ({ enquiry }: OrderCreationInputType) => {
         setUserPhone('0402123456')
     }
 
-    const HandleUserCheckboxonChange = () => {
+    const HandleUserCheckboxonChange = (): void => {
         if (isHavingUser) {
             setUserId('')
             setUserName('')
@@ -42,7 +66,7 @@ const OrderEditor = ({ enquiry }: OrderCreationInputType) => {
         }
         setIsHavingUser(!isHavingUser)
     }
-    const HandleSessionCheckboxonChange = () => {
+    const HandleSessionCheckboxonChange = (): void => {
         if (isHavingSession) {
             setSession('')
             setType('')
@@ -53,69 +77,308 @@ const OrderEditor = ({ enquiry }: OrderCreationInputType) => {
         }
         setIsHavingSession(!isHavingSession)
     }
+    const CreateAppoinment = (): void => {
+        const _appoinmentList = [...appoinmentList]
+        const appoinment = {
+            location: '',
+            time: '',
+            duration: '',
+            postscript: '',
+            remark: '',
+        }
+        _appoinmentList.push(appoinment)
+        setAppoinmentList(_appoinmentList)
+    }
+    const UpdateAppoinment = (appoinment: AppoinmentType, index: number): void => {
+        const _appoinmentList = [...appoinmentList]
+
+        for (let _index = 0; _index < _appoinmentList.length; _index++) {
+            if (_index == index) {
+                _appoinmentList[index] = { ...appoinment }
+            }
+
+        }
+        setAppoinmentList(_appoinmentList)
+    }
+    const DeleteAppoinment = (index: number): void => {
+        const _appoinmentList = []
+        for (let _index = 0; _index < appoinmentList.length; _index++) {
+            if (_index != index) {
+                _appoinmentList.push(appoinmentList[_index])
+            }
+
+        }
+        setAppoinmentList(_appoinmentList)
+    }
+    const CreateProduct = (): void => {
+        const _productList = [...productList]
+        const product = {
+            item: '',
+            type: '',
+            quantity: 0,
+            price: 0,
+            postscript: '',
+            remark: '',
+        }
+        _productList.push(product)
+        setProductList(_productList)
+    }
+    const UpdateProduct = (product: ProductType, index: number): void => {
+        const _productList = [...productList]
+
+        for (let _index = 0; _index < _productList.length; _index++) {
+            if (_index == index) {
+                _productList[index] = { ...product }
+            }
+
+        }
+        setProductList(_productList)
+    }
+    const DeleteProduct = (index: number): void => {
+        const _productList = []
+        for (let _index = 0; _index < productList.length; _index++) {
+            if (_index != index) {
+                _productList.push(productList[_index])
+            }
+
+        }
+        setProductList(_productList)
+    }
+    const handleSaveOnClick = (): void => {
+        alert('save button on click')
+    }
+    const handleResetOnClick = (): void => {
+        alert('reset button on click')
+    }
+    const handleClearOnClick = (): void => {
+        alert('clear button on click')
+    }
     return (
-        <div className={'w-full h-full flex flex-col rounded-lg px-8 ' + theme}>
-            <p className="mt-4 ml-4 text-4xl">{orderId ? 'Order Update: ' + orderId : 'New Order'}</p>
-
-
-            <div className="flex w-full mt-10 items-center">
-                <p className="text-2xl">User</p>
-                <p className="text-sm ml-12">Link order with a user</p>
-                <input type="checkbox" className="ml-2" checked={isHavingUser} onChange={HandleUserCheckboxonChange} />
-            </div>
-            {/* <Line /> */}
-            <div className="w-full flex flex-col mx-auto">
-                <div className="flex w-full">
-                    <TextInput label={'user id'} value={userId} OnChange={setUserId} isDisabled={!isHavingUser} classname='mt-4 w-full' >
-                        <BsSearch onClick={GetUserById} size={20} className="my-auto mx-2 cursor-pointer" />
-
-                    </TextInput>
+        <div className={'w-full h-full flex flex-col rounded-lg ' + theme}>
+            <p className="my-4 ml-4 text-4xl">{orderId ? 'Order Update: ' + orderId : 'New Order'}</p>
+            <Line />
+            <div className="flex flex-col w-full overflow-y-auto p-8 mt-1">
+                <div className="flex w-full items-center">
+                    <p className="text-2xl">User</p>
+                    <p className="text-sm ml-12">Link order with a user</p>
+                    <input type="checkbox" className="ml-2" checked={isHavingUser} onChange={HandleUserCheckboxonChange} />
                 </div>
-                <TextInput label={'user name'} value={userName} OnChange={setUserName} isDisabled={!isHavingUser} classname='mt-2 w-full' />
-                <TextInput label={'user email'} value={userEmail} OnChange={setUserEmail} isDisabled={!isHavingUser} classname='mt-2 w-full' />
-                <TextInput label={'user phone'} value={userPhone} OnChange={setUserPhone} isDisabled={!isHavingUser} classname='mt-2 w-full' />
-            </div>
+                <div className="w-full flex flex-col mx-auto">
+                    <div className="flex w-full">
+                        <TextInput1 label={'user id'} value={userId} OnChange={setUserId} isDisabled={!isHavingUser} classname='mt-4 w-full' >
+                            <BsSearch onClick={GetUserById} size={20} className="my-auto mx-2 cursor-pointer" />
+                        </TextInput1>
+                    </div>
+                    <TextInput1 label={'user name'} value={userName} OnChange={setUserName} isDisabled={!isHavingUser} classname='mt-2 w-full' />
+                    <TextInput1 label={'user email'} value={userEmail} OnChange={setUserEmail} isDisabled={!isHavingUser} classname='mt-2 w-full' />
+                    <TextInput1 label={'user phone'} value={userPhone} OnChange={setUserPhone} isDisabled={!isHavingUser} classname='mt-2 w-full' />
+                </div>
 
 
-            <div className="flex w-full mt-10 items-center">
-                <p className="text-2xl">Photography Service</p>
-                <p className="text-sm ml-12">Link order with a photography session</p>
-                <input type="checkbox" className="ml-2" checked={isHavingUser} onChange={HandleSessionCheckboxonChange} />
+                <div className="flex w-full mt-10 items-center">
+                    <p className="text-2xl">Photography Service</p>
+                    <p className="text-sm ml-12">Link order with a photography session</p>
+                    <input type="checkbox" className="ml-2" checked={isHavingUser} onChange={HandleSessionCheckboxonChange} />
+                </div>
+                <div className="w-full flex flex-col mx-auto">
+                    <TextInput1 label={'session'} value={session} OnChange={setSession} isDisabled={!isHavingSession} classname='mt-2 w-full' />
+                    <TextInput1 label={'photo type'} value={type} OnChange={setType} isDisabled={!isHavingSession} classname='mt-2 w-full' />
+                    <TextInput1 label={'number of original Photos'} value={originalPhotos} OnChange={setOriginalPhotos} isDisabled={!isHavingSession} classname='mt-2 w-full' />
+                    <TextInput1 label={'number of edited Photos'} value={editedPhotos} OnChange={setEditedPhotos} isDisabled={!isHavingSession} classname='mt-2 w-full' />
+                    <TextInput1 label={'video'} value={video} OnChange={setVideo} isDisabled={!isHavingSession} classname='mt-2 w-full' />
+                    <TextInput1 label={'duration'} value={duration} OnChange={setDuration} isDisabled={!isHavingSession} classname='mt-2 w-full' />
+                </div>
+
+                <div className="flex w-full mt-10 items-center">
+                    <p className="text-2xl">Appoinment</p>
+                </div>
+                <ul className="w-full space-y-2 ">
+                    {appoinmentList.map((appoinment, index) => <li key={index} className="flex flex-col w-full mt-2 border-2 border-gray-300 px-4 py-2 rounded-lg">
+                        <TextInput2 label={'location'} value={appoinment.location} OnChange={value => { appoinmentList[index].location = value; UpdateAppoinment(appoinmentList[index], index) }} classname='mt-2 w-full' />
+                        <div className="flex space-x-4 w-full">
+                            <TextInput2 label={'time'} value={appoinment.time} OnChange={value => { appoinmentList[index].time = value; UpdateAppoinment(appoinmentList[index], index) }} classname='mt-2 w-1/2' />
+                            <TextInput2 label={'duration'} value={appoinment.duration} OnChange={value => { appoinmentList[index].duration = value; UpdateAppoinment(appoinmentList[index], index) }} classname='mt-2 w-1/2' />
+                        </div>
+                        <TextInput2 label={'postscript'} value={appoinment.postscript} OnChange={value => { appoinmentList[index].postscript = value; UpdateAppoinment(appoinmentList[index], index) }} classname='mt-2 w-full' />
+                        <TextInput2 label={'remark'} value={appoinment.remark} OnChange={value => { appoinmentList[index].remark = value; UpdateAppoinment(appoinmentList[index], index) }} classname='mt-2 w-full' />
+                        <div
+                            className="flex items-center justify-center w-full bg-white/10 rounded-md p-2 cursor-pointer mt-2 hover:bg-white/20"
+                            onClick={() => DeleteAppoinment(index)}
+                        >
+                            <BsXCircleFill size={20} />
+                            <p className="ml-2 text-sm">Delete</p>
+                        </div>
+                    </li>)}
+                </ul>
+                <div className="flex items-center justify-center w-full bg-white/10 rounded-lg p-4 cursor-pointer mt-2 hover:bg-white/20" onClick={CreateAppoinment}>
+                    <BsPlusCircleFill size={25} />
+                    <p className="ml-2 text-lg">Add new appoinment</p>
+                </div>
+
+                <div className="flex w-full mt-10 items-center">
+                    <p className="text-2xl">Product</p>
+                </div>
+                <ul className="w-full space-y-2 ">
+                    {productList.map((product, index) => <li key={index} className="flex flex-col w-full mt-2 border-2 border-gray-300 px-4 py-2 rounded-lg">
+                        <TextInput2 label={'item'} value={product.item} OnChange={value => { productList[index].item = value; UpdateProduct(productList[index], index) }} classname='mt-2 w-full' />
+                        <TextInput2 label={'type'} value={product.type} OnChange={value => { productList[index].type = value; UpdateProduct(productList[index], index) }} classname='mt-2 w-full' />
+                        <div className="flex space-x-4 w-full">
+                            <TextInput2 label={'quantity'} type='number' value={product.quantity} OnChange={value => { productList[index].quantity = parseInt(value); UpdateProduct(productList[index], index) }} classname='mt-2 w-1/2' />
+                            <TextInput2 label={'price'} type='number' value={product.price} OnChange={value => { productList[index].price = parseFloat(value); UpdateProduct(productList[index], index) }} classname='mt-2 w-1/2' />
+                        </div>
+                        <TextInput2 label={'postscript'} value={product.postscript} OnChange={value => { productList[index].postscript = value; UpdateProduct(productList[index], index) }} classname='mt-2 w-full' />
+                        <TextInput2 label={'remark'} value={product.remark} OnChange={value => { productList[index].remark = value; UpdateProduct(productList[index], index) }} classname='mt-2 w-full' />
+                        <div
+                            className="flex items-center justify-center w-full bg-white/10 rounded-md p-2 cursor-pointer mt-2 hover:bg-white/20"
+                            onClick={() => DeleteProduct(index)}
+                        >
+                            <BsXCircleFill size={20} />
+                            <p className="ml-2 text-sm">Delete</p>
+                        </div>
+                    </li>)}
+                </ul>
+                <div className="flex items-center justify-center w-full bg-white/10 rounded-lg p-4 cursor-pointer mt-2 hover:bg-white/20" onClick={CreateProduct}>
+                    <BsPlusCircleFill size={25} />
+                    <p className="ml-2 text-lg">Add new product</p>
+                </div>
+
+                <div className="flex w-full mt-10 items-center">
+                    <p className="text-2xl">postscript</p>
+                </div>
+                <div className="w-full flex mt-2">
+                    <textarea
+                        className="w-full h-24 bg-transparent border-2 border-gray-300"
+                        value={postscript} onChange={e => setPostscript(e.target.value)}
+                    />
+                </div>
+
+                <div className="flex w-full mt-10 items-center">
+                    <p className="text-2xl">Status</p>
+                </div>
+                <div className="w-full flex flex-col mx-auto">
+                    <TextInput1 label={'status'} value={status} OnChange={setStatus} classname='mt-2 w-full' />
+                    <TextInput1 label={'deposit payment time'} value={depositPaymentTime} OnChange={setDepositPaymentTime} classname='mt-2 w-full' >
+                        {depositPaymentTime != '' && <CompleteTag />}
+                    </TextInput1>
+                    <TextInput1 label={'shooting complete time'} value={shootingCompleteTime} OnChange={setShootingCompleteTime} classname='mt-2 w-full' >
+                        {shootingCompleteTime != '' && <CompleteTag />}
+                    </TextInput1>
+                    <TextInput1 label={'balance payment time'} value={balancePaymentTime} OnChange={setBalancePaymentTime} classname='mt-2 w-full' >
+                        {balancePaymentTime != '' && <CompleteTag />}
+                    </TextInput1>
+                    <TextInput1 label={'finalise time'} value={finaliseTime} OnChange={setFinaliseTime} classname='mt-2 w-full' >
+                        {finaliseTime != '' && <CompleteTag />}
+                    </TextInput1>
+                </div>
+
+                <div className="flex w-full mt-10 items-center">
+                    <p className="text-2xl">Price</p>
+                </div>
+                <div className="w-full flex flex-col mx-auto">
+                    <NumberInput label={'total price'} value={totalPrice} OnChange={setTotalPrice} classname='mt-2 w-full' />
+                    <NumberInput label={'deposit price'} value={depositPrice} OnChange={setDepositPrice} classname='mt-2 w-full' />
+                    <NumberInput label={'balance price'} value={balancePrice} OnChange={setBalancePrice} classname='mt-2 w-full' />
+                </div>
+
+                <div className="flex w-full mt-10 items-center">
+                    <p className="text-2xl" title="only we can see this">Remark</p>
+                </div>
+                <div className="w-full flex mt-2">
+                    <textarea
+                        className="w-full h-24 bg-transparent border-2 border-gray-300"
+                        value={remark} onChange={e => setRemark(e.target.value)}
+                    />
+                </div>
             </div>
-            <div className="w-full flex flex-col mx-auto">
-                <TextInput label={'session'} value={session} OnChange={setSession} isDisabled={!isHavingSession} classname='mt-2 w-full' />
-                <TextInput label={'photo type'} value={type} OnChange={setType} isDisabled={!isHavingSession} classname='mt-2 w-full' />
-                <TextInput label={'number of original Photos'} value={originalPhotos} OnChange={setOriginalPhotos} isDisabled={!isHavingSession} classname='mt-2 w-full' />
-                <TextInput label={'number of edited Photos'} value={editedPhotos} OnChange={setEditedPhotos} isDisabled={!isHavingSession} classname='mt-2 w-full' />
-                <TextInput label={'video'} value={video} OnChange={setVideo} isDisabled={!isHavingSession} classname='mt-2 w-full' />
-                <TextInput label={'duration'} value={duration} OnChange={setDuration} isDisabled={!isHavingSession} classname='mt-2 w-full' />
+            <Line />
+            <div className="flex justify-between w-full h-24 px-8 my-4 ">
+                <Button title={'Save'} onClick={handleSaveOnClick} />
+                <Button title={'Reset'} onClick={handleResetOnClick} />
+                <Button title={'Clear'} onClick={handleClearOnClick} />
             </div>
         </div>
     )
 }
 type OrderCreationInputType = {
-    enquiry: EnquiryType | null
+    enquiry?: EnquiryType | null,
+    order?: OrderType | null,
 }
 
 const Line = ({ classname }: LineInputType) => <div className={"h-1 bg-white/20 " + (classname && classname)} />
 type LineInputType = { classname?: string }
+const CompleteTag = () => <p className="flex space-x-2 text-sm text-green-300 items-center text-nowrap"><BsCheckLg size={20} />&nbsp;mark as completed</p>
 
-const TextInput = ({ classname, label, value, OnChange, isDisabled = false, children }: TextInputInputType) =>
+const TextInput1 = ({ classname, label, value, OnChange, isDisabled = false, children, type = 'text' }: TextInput1InputType) =>
     <div className={"flex border-b-2 border-white/20 focus-within:border-white h-12 " + classname}>
         <p className="my-auto whitespace-nowrap bg-white/20 h-full px-2 flex items-center rounded">{label}</p>
-        <input disabled={isDisabled} className={"appearance-none outline-none bg-transparent pl-2 w-full disabled:bg-gray-700"} value={value} onChange={e => OnChange(e.target.value)} />
+        <input
+            disabled={isDisabled}
+            className={"appearance-none outline-none bg-transparent pl-2 w-full disabled:bg-gray-700"}
+            value={value}
+            onChange={e => OnChange(e.target.value)}
+            type={type}
+        />
         {children}
     </div>
-type TextInputInputType = {
+type TextInput1InputType = {
     classname?: string,
     label?: string,
-    value: string,
+    value: string | number,
     OnChange: Dispatch<SetStateAction<string>>,
     isDisabled?: boolean,
     children?: React.ReactNode
+    type?: string,
 }
 
-
+const TextInput2 = ({ classname, label, value, OnChange, children, type = 'text' }: TextInput2InputType) =>
+    <div className={"flex border-b-2 border-white/20 focus-within:border-white h-12 " + classname}>
+        <p className="my-auto whitespace-nowrap bg-white/20 h-full px-2 flex items-center rounded">{label}</p>
+        <input
+            className={"appearance-none outline-none bg-transparent pl-2 w-full"}
+            value={value}
+            onChange={e => OnChange(e.target.value)}
+            type={type}
+        />
+        {children}
+    </div>
+type TextInput2InputType = {
+    classname?: string,
+    label?: string,
+    value: string | number,
+    OnChange: Dispatch<string>,
+    children?: React.ReactNode
+    type?: string,
+}
+const NumberInput = ({ classname, label, value, OnChange, isDisabled = false, children }: NumberInputInputType) =>
+    <div className={"flex border-b-2 border-white/20 focus-within:border-white h-12 " + classname}>
+        <p className="my-auto whitespace-nowrap bg-white/20 h-full px-2 flex items-center rounded">{label}</p>
+        <input
+            disabled={isDisabled}
+            className={"appearance-none outline-none bg-transparent pl-2 w-full disabled:bg-gray-700"}
+            value={value}
+            onChange={e => OnChange(parseFloat(e.target.value))}
+            type='number'
+        />
+        {children}
+    </div>
+type NumberInputInputType = {
+    classname?: string,
+    label?: string,
+    value: string | number,
+    OnChange: Dispatch<SetStateAction<number>>,
+    isDisabled?: boolean,
+    children?: React.ReactNode
+}
+const Button = ({ onClick, title }: ButtonInputType) => <div
+    className="flex items-center justify-center w-36 h-full bg-white/10 rounded-md cursor-pointer hover:bg-white/20"
+    onClick={onClick}
+>
+    <p className="m-auto text-lg">{title}</p>
+</div>
+type ButtonInputType = {
+    onClick: () => void,
+    title: string
+}
 export type EnquiryType = {
     id: string,
     userId: string,
@@ -128,5 +391,40 @@ export type EnquiryType = {
     price: number,
     appointments: string[],
     products: string[],
+}
+export type OrderType = {
+    id: string,
+    userId: string,
+    session: string,
+    type: string,
+    status: string,
+    postscript: string,
+    isValid: boolean,
+    created: string,
+    price: number,
+    appointments: string[],
+    products: string[],
+}
+export type AppoinmentType = {
+    id?: number,
+    appoinmentId?: string,
+    orderId?: string,
+    location: string,
+    time: string,
+    duration: string,
+    postscript: string,
+    remark: string,
+}
+export type ProductType = {
+    id?: number,
+    productId?: string,
+    orderId?: string,
+    itemId?: string,
+    item: string,
+    type: string,
+    quantity: number,
+    price: number,
+    postscript: string,
+    remark: string,
 }
 export default OrderEditor

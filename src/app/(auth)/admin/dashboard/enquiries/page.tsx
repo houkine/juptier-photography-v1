@@ -2,15 +2,15 @@
 import OrderEditor, { EnquiryType } from '@/components/admin/OrderEditor/OrderEditor'
 import React, { Dispatch, SetStateAction, useContext, useState } from 'react'
 import { ThemeContext } from '../ThemeContext'
-import { BsCheckCircleFill, BsFillReplyFill, BsXCircleFill, BsCaretDownFill, BsCaretUpFill, BsCalendarHeart, BsCartCheck } from 'react-icons/bs'
+import { BsCheckCircleFill, BsFillReplyFill, BsXCircleFill, BsCaretDownFill, BsCaretUpFill, BsCalendarHeart, BsCartCheck, BsArrowUpSquare } from 'react-icons/bs'
 import Pagenation from '@/components/admin/Pagenation/Pagenation'
 
 const Page = () => {
     const [enquiry, setEnquiry] = useState<EnquiryType | null>(null)
     return (
         <div className='w-full h-full flex space-x-4'>
-            <div className='h-full w-2/3 flex flex-col space-y-4'>
-                <div className='h-1/2 w-full flex'> <ComingEnquiries onOrderGenerate={setEnquiry} /></div>
+            <div className='h-full w-2/3 flex flex-col justify-between'>
+                <div className='h-1/2 w-full flex pb-4'> <ComingEnquiries onOrderGenerate={setEnquiry} /></div>
 
                 <div className='h-1/2 w-full flex'><EnquiryHistory /></div>
             </div>
@@ -27,7 +27,7 @@ const ComingEnquiries = ({ onOrderGenerate }: ComingEnquiriesInputType) => {
 
     return (
         <div className={'w-full h-full flex flex-col rounded-lg ' + theme}>
-            <div className='mt-4 h-18 flex'>
+            <div className='mt-4 h-18 flex items-center'>
                 <p className='ml-8 text-xl'>Coming Enquiries</p>
                 <Pagenation
                     take={take} handleTakeOnChange={setTake} takeOptions={takeOptions}
@@ -47,7 +47,7 @@ const ComingEnquiries = ({ onOrderGenerate }: ComingEnquiriesInputType) => {
                 <p className={OrderTabClassname + ' w-32'}>{'status'}</p>
                 <p className={OrderTabClassname + ' flex-grow '}>{'action'}</p>
             </div>
-            <ul className='w-full overflow-y-auto'>
+            <ul className='w-full overflow-y-auto mb-2'>
                 {ComingEnquiryList.map((enquiry, index) => (
                     <EnquiryRecord key={index} enquiry={enquiry} onOrderGenerate={onOrderGenerate} />
                 ))}
@@ -204,8 +204,35 @@ const ComingEnquiryList = [
     },
 ]
 const EnquiryHistory = () => {
+    const theme = useContext(ThemeContext);
+    const [take, setTake] = useState(5)
     return (
-        <div className='w-full flex flex-col'>
+        <div className={'w-full h-full flex flex-col rounded-lg ' + theme}>
+            <div className='mt-4 h-18 flex items-center'>
+                <p className='ml-8 text-xl'>Enquiry History</p>
+                <Pagenation
+                    take={take} handleTakeOnChange={setTake} takeOptions={takeOptions}
+                    recordStartIndex={1} recordEndIndex={take} totalRecords={10}
+                    className='h-12 m-auto mr-8 flex items-center'
+                />
+
+            </div>
+            <div className='w-full h-32 flex text-white bg-white/20 mt-4'>
+                <p className={OrderTabClassname + ' w-16'}>{''}</p>
+                <p className={OrderTabClassname + ' w-72'}>{'id'}</p>
+                <p className={OrderTabClassname + ' w-48'}>{'session'}</p>
+                <p className={OrderTabClassname + ' w-32'}>{'created at'}</p>
+                <p className={OrderTabClassname + ' w-24'}>{'appoinment'}</p>
+                <p className={OrderTabClassname + ' w-20'}>{'product'}</p>
+                <p className={OrderTabClassname + ' w-32'}>{'price(AUD)'}</p>
+                <p className={OrderTabClassname + ' w-32'}>{'status'}</p>
+                <p className={OrderTabClassname + ' flex-grow '}>{'action'}</p>
+            </div>
+            <ul className='w-full overflow-y-auto mb-2'>
+                {ComingEnquiryList.map((enquiry, index) => (
+                    <EnquiryRecord key={index} enquiry={enquiry} />
+                ))}
+            </ul>
         </div>
     )
 }
@@ -225,11 +252,16 @@ const EnquiryRecord = ({ enquiry, onOrderGenerate }: EnquiryRecordInputType) => 
                 <p className={OrderTabClassname + ' w-20'}>{enquiry.products.length > 0 ? '√' : '×'}</p>
                 <p className={OrderTabClassname + ' w-32'}>{'$' + enquiry.price}</p>
                 <p className={OrderTabClassname + ' w-32'}>{enquiry.status}</p>
-                <div className='flex h-full flex-grow justify-center items-center'>
-                    <BsFillReplyFill className='h-full cursor-pointer ' title='email' />
-                    <BsXCircleFill className='h-full ml-4 cursor-pointer' title='mark as read' />
-                    <BsCheckCircleFill className='h-full ml-4 cursor-pointer' title='generate order' onClick={() => onOrderGenerate(enquiry)} />
-                </div>
+                {onOrderGenerate ?
+                    <div className='flex h-full flex-grow justify-center items-center'>
+                        <BsFillReplyFill className='h-full cursor-pointer ' title='email' />
+                        <BsXCircleFill className='h-full ml-4 cursor-pointer' title='mark as read' />
+                        <BsCheckCircleFill className='h-full ml-4 cursor-pointer' title='generate order' onClick={() => onOrderGenerate(enquiry)} />
+                    </div> :
+                    <div className='flex h-full flex-grow justify-center items-center'>
+                        <BsArrowUpSquare className='h-full cursor-pointer ' title='mark as unread' />
+                    </div>
+                }
             </div>
             {isExtended && <div className='min-h-24 py-2 w-full flex'>
                 <div className='flex flex-col ml-4 w-48 items-center space-y-2'>
@@ -269,7 +301,7 @@ const EnquiryRecord = ({ enquiry, onOrderGenerate }: EnquiryRecordInputType) => 
 }
 type EnquiryRecordInputType = {
     enquiry: EnquiryType,
-    onOrderGenerate: Dispatch<SetStateAction<EnquiryType | null>>
+    onOrderGenerate?: Dispatch<SetStateAction<EnquiryType | null>>
 }
 // const EnquiryRecordButton = ({ content, handleOnClick }: EnquiryRecordButtonInputType) =>
 //     <div
