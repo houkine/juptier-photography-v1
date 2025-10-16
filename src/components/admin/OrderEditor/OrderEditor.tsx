@@ -46,8 +46,38 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
     }, [enquiry])
 
     useEffect(() => {
-        if (order)
+        if (order) {
             setOrderId(order.id)
+            setUserId(order.userId)
+            setUserName('pan')
+            setUserEmail('pan@email.com')
+            setUserPhone('04020000000')
+
+            setSession(order.session)
+            setType(order.type)
+            setOriginalPhotos(order.originalPhotos)
+            setEditedPhotos(order.editedPhotos)
+            setVideo(order.video)
+            setDuration(order.duration)
+
+            setAppoinmentList(order.appointments)
+            setProductList(order.products)
+
+            setPostscript(order.postscript)
+
+            setStatus(order.status)
+            setDepositPaymentTime(order.depositPaymentTime)
+            setShootingCompleteTime(order.shootingCompleteTime)
+            setBalancePaymentTime(order.balancePaymentTime)
+            setFinaliseTime(order.finaliseTime)
+
+            setTotalPrice(order.totalPrice)
+            setDepositPrice(order.depositPrice)
+            setBalancePrice(order.balancePrice)
+
+            setRemark(order.remark)
+
+        }
     }, [order])
 
     const GetUserById = () => {
@@ -155,7 +185,15 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
     }
     return (
         <div className={'w-full h-full flex flex-col rounded-lg ' + theme}>
-            <p className="my-4 ml-4 text-4xl">{orderId ? 'Order Update: ' + orderId : 'New Order'}</p>
+            {orderId ?
+                <div className="w-full h-20 flex flex-col my-4 ml-4">
+                    <p className="text-4xl">{'Order Update: '}</p>
+                    <p className="text-base text-gray-300 mt-2">{orderId}</p>
+                </div> :
+                <div className="w-full h-20 flex my-4 ml-4">
+                    <p className="text-4xl">{'New Order'}</p>
+                </div>
+            }
             <Line />
             <div className="flex flex-col w-full overflow-y-auto p-8 mt-1">
                 <div className="flex w-full items-center">
@@ -243,11 +281,11 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
                 </div>
 
                 <div className="flex w-full mt-10 items-center">
-                    <p className="text-2xl">postscript</p>
+                    <p className="text-2xl">Postscript</p>
                 </div>
                 <div className="w-full flex mt-2">
                     <textarea
-                        className="w-full h-24 bg-transparent border-2 border-gray-300"
+                        className="w-full h-24 bg-transparent border-2 border-gray-300 rounded-lg"
                         value={postscript} onChange={e => setPostscript(e.target.value)}
                     />
                 </div>
@@ -285,7 +323,7 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
                 </div>
                 <div className="w-full flex mt-2">
                     <textarea
-                        className="w-full h-24 bg-transparent border-2 border-gray-300"
+                        className="w-full h-24 bg-transparent border-2 border-gray-300 rounded-lg"
                         value={remark} onChange={e => setRemark(e.target.value)}
                     />
                 </div>
@@ -397,13 +435,24 @@ export type OrderType = {
     userId: string,
     session: string,
     type: string,
-    status: string,
+    originalPhotos: string,
+    editedPhotos: string,
+    video: string,
+    duration: string,
+    appointments: AppoinmentType[],
+    products: ProductType[],
     postscript: string,
+    status: string,
+    depositPaymentTime: string,
+    shootingCompleteTime: string,
+    balancePaymentTime: string,
+    finaliseTime: string,
+    totalPrice: number,
+    depositPrice: number,
+    balancePrice: number,
+    remark: string,
     isValid: boolean,
-    created: string,
-    price: number,
-    appointments: string[],
-    products: string[],
+    createdAt: string,
 }
 export type AppoinmentType = {
     id?: number,

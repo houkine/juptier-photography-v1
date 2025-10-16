@@ -4,17 +4,18 @@ import React, { Dispatch, SetStateAction, useContext, useState } from 'react'
 import { ThemeContext } from '../ThemeContext'
 import { BsCheckCircleFill, BsFillReplyFill, BsXCircleFill, BsCaretDownFill, BsCaretUpFill, BsCalendarHeart, BsCartCheck, BsArrowUpSquare } from 'react-icons/bs'
 import Pagenation from '@/components/admin/Pagenation/Pagenation'
+import SearchBar from '@/components/admin/SearchBar/SearchBar'
 
 const Page = () => {
     const [enquiry, setEnquiry] = useState<EnquiryType | null>(null)
     return (
-        <div className='w-full h-full flex space-x-4'>
-            <div className='h-full w-2/3 flex flex-col justify-between'>
+        <div className='w-full h-full flex'>
+            <div className='h-full w-2/3 flex flex-col justify-between px-2'>
                 <div className='h-1/2 w-full flex pb-4'> <ComingEnquiries onOrderGenerate={setEnquiry} /></div>
 
                 <div className='h-1/2 w-full flex'><EnquiryHistory /></div>
             </div>
-            <div className='h-full w-1/3 flex '><OrderEditor enquiry={enquiry} /></div>
+            <div className='h-full w-1/3 flex px-2'><OrderEditor enquiry={enquiry} /></div>
 
         </div>
     )
@@ -24,11 +25,15 @@ const ComingEnquiries = ({ onOrderGenerate }: ComingEnquiriesInputType) => {
     const theme = useContext(ThemeContext);
     const [take, setTake] = useState(5)
 
+    const HandleSearchOnClick = (selectedValue: string, keywords: string): void => {
+        alert(selectedValue + '-' + keywords)
+    }
 
     return (
         <div className={'w-full h-full flex flex-col rounded-lg ' + theme}>
             <div className='mt-4 h-18 flex items-center'>
                 <p className='ml-8 text-xl'>Coming Enquiries</p>
+                <SearchBar selectValueList={['id', 'session']} className='m-auto mr-0' SearchOnClick={HandleSearchOnClick} />
                 <Pagenation
                     take={take} handleTakeOnChange={setTake} takeOptions={takeOptions}
                     recordStartIndex={1} recordEndIndex={take} totalRecords={10}
@@ -36,7 +41,7 @@ const ComingEnquiries = ({ onOrderGenerate }: ComingEnquiriesInputType) => {
                 />
 
             </div>
-            <div className='w-full h-32 flex text-white bg-white/20 mt-4'>
+            <div className='w-full h-12 flex text-white bg-white/20 mt-4'>
                 <p className={OrderTabClassname + ' w-16'}>{''}</p>
                 <p className={OrderTabClassname + ' w-72'}>{'id'}</p>
                 <p className={OrderTabClassname + ' w-48'}>{'session'}</p>
@@ -206,10 +211,15 @@ const ComingEnquiryList = [
 const EnquiryHistory = () => {
     const theme = useContext(ThemeContext);
     const [take, setTake] = useState(5)
+
+    const HandleSearchOnClick = (selectedValue: string, keywords: string): void => {
+        alert(selectedValue + '-' + keywords)
+    }
     return (
         <div className={'w-full h-full flex flex-col rounded-lg ' + theme}>
             <div className='mt-4 h-18 flex items-center'>
                 <p className='ml-8 text-xl'>Enquiry History</p>
+                <SearchBar selectValueList={['id', 'session']} className='m-auto mr-0' SearchOnClick={HandleSearchOnClick} />
                 <Pagenation
                     take={take} handleTakeOnChange={setTake} takeOptions={takeOptions}
                     recordStartIndex={1} recordEndIndex={take} totalRecords={10}
@@ -217,7 +227,7 @@ const EnquiryHistory = () => {
                 />
 
             </div>
-            <div className='w-full h-32 flex text-white bg-white/20 mt-4'>
+            <div className='w-full h-12 flex text-white bg-white/20 mt-4'>
                 <p className={OrderTabClassname + ' w-16'}>{''}</p>
                 <p className={OrderTabClassname + ' w-72'}>{'id'}</p>
                 <p className={OrderTabClassname + ' w-48'}>{'session'}</p>
@@ -303,28 +313,6 @@ type EnquiryRecordInputType = {
     enquiry: EnquiryType,
     onOrderGenerate?: Dispatch<SetStateAction<EnquiryType | null>>
 }
-// const EnquiryRecordButton = ({ content, handleOnClick }: EnquiryRecordButtonInputType) =>
-//     <div
-//         className='w-18 h-8 bg-white/10 rounded-full text-sm flex items-center justify-center cursor-pointer hover:bg-white/20'
-//         onClick={handleOnClick}
-//     >{content}</div>
-// type EnquiryRecordButtonInputType = {
-//     content: string,
-//     handleOnClick?: () => void
-// }
-
-// const Enquiry = {
-//     id: '0199c8d1-5ed5-7739-af10-9fbb235fd816',
-//     userId: '0199c8d1-5ed5-7739-af10-9fbb235fd816',
-//     itemId: '0199c8d1-5ed5-7739-af10-9fbb235fd816',
-//     user: 'pan',
-//     product: 'album',
-//     type: 'A4 20photos style1',
-//     quantity: 1,
-//     price: 20,
-//     Postscript: 'photo with campus',
-
-// }
 const OrderTabClassname = 'h-full text-sm flex items-center justify-center'
 const takeOptions = [1, 2, 3, 4, 5]
 const fakeText = 'You’ll then enjoy a cinematic viewing of your photoshoot, where you’ll get to choose your favourite image to be beautifully retouched, framed and sent to you with our compliments.If you’d like to buy more photos, we have a wide range of options to chose from including framed artwork and digital collections with prices starting from as little as $395.'

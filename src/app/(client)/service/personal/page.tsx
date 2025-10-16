@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { personalPhotographySectionlist, personalPhotographyDemolist, personalPhotographyPricelist } from "@/constant/shopPageContent";
+import { personalPhotographySectionlist, personalPhotographyPricelist } from "@/constant/shopPageContent";
 import Image from 'next/image';
 import { PriceCard } from '../components';
 
