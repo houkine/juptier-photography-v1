@@ -195,7 +195,7 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
                 </div>
             }
             <Line />
-            <div className="flex flex-col w-full overflow-y-auto p-8 mt-1">
+            <div className="flex flex-col w-full overflow-y-auto p-4 mt-1">
                 <div className="flex w-full items-center">
                     <p className="text-2xl">User</p>
                     <p className="text-sm ml-12">Link order with a user</p>
@@ -329,7 +329,7 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
                 </div>
             </div>
             <Line />
-            <div className="flex justify-between w-full h-24 px-8 my-4 ">
+            <div className="flex justify-between w-full h-24 px-4 my-4 ">
                 <Button title={'Save'} onClick={handleSaveOnClick} />
                 <Button title={'Reset'} onClick={handleResetOnClick} />
                 <Button title={'Clear'} onClick={handleClearOnClick} />
@@ -347,11 +347,11 @@ type LineInputType = { classname?: string }
 const CompleteTag = () => <p className="flex space-x-2 text-sm text-green-300 items-center text-nowrap"><BsCheckLg size={20} />&nbsp;mark as completed</p>
 
 const TextInput1 = ({ classname, label, value, OnChange, isDisabled = false, children, type = 'text' }: TextInput1InputType) =>
-    <div className={"flex border-b-2 border-white/20 focus-within:border-white h-12 " + classname}>
-        <p className="my-auto whitespace-nowrap bg-white/20 h-full px-2 flex items-center rounded">{label}</p>
+    <div className={"flex border-b-2 border-white/20 focus-within:border-white min-h-12 " + classname}>
+        <p className="bg-white/20 h-full px-2 flex items-center rounded w-16 text-sm">{label}</p>
         <input
             disabled={isDisabled}
-            className={"appearance-none outline-none bg-transparent pl-2 w-full disabled:bg-gray-700"}
+            className={"appearance-none outline-none bg-transparent p-2 w-full disabled:bg-gray-700"}
             value={value}
             onChange={e => OnChange(e.target.value)}
             type={type}
@@ -408,7 +408,7 @@ type NumberInputInputType = {
     children?: React.ReactNode
 }
 const Button = ({ onClick, title }: ButtonInputType) => <div
-    className="flex items-center justify-center w-36 h-full bg-white/10 rounded-md cursor-pointer hover:bg-white/20"
+    className="flex items-center justify-center w-24 h-full bg-white/10 rounded-md cursor-pointer hover:bg-white/20"
     onClick={onClick}
 >
     <p className="m-auto text-lg">{title}</p>

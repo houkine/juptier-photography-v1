@@ -41,22 +41,24 @@ const ComingEnquiries = ({ onOrderGenerate }: ComingEnquiriesInputType) => {
                 />
 
             </div>
-            <div className='w-full h-12 flex text-white bg-white/20 mt-4'>
-                <p className={OrderTabClassname + ' w-16'}>{''}</p>
-                <p className={OrderTabClassname + ' w-72'}>{'id'}</p>
-                <p className={OrderTabClassname + ' w-48'}>{'session'}</p>
-                <p className={OrderTabClassname + ' w-32'}>{'created at'}</p>
-                <p className={OrderTabClassname + ' w-24'}>{'appoinment'}</p>
-                <p className={OrderTabClassname + ' w-20'}>{'product'}</p>
-                <p className={OrderTabClassname + ' w-32'}>{'price(AUD)'}</p>
-                <p className={OrderTabClassname + ' w-32'}>{'status'}</p>
-                <p className={OrderTabClassname + ' flex-grow '}>{'action'}</p>
+            <div className='w-full flex flex-col mt-4 overflow-auto'>
+                <div className='h-12 flex text-white bg-white/20'>
+                    <p className={OrderTabClassname + ' w-16'}>{''}</p>
+                    <p className={OrderTabClassname + ' w-72'}>{'id'}</p>
+                    <p className={OrderTabClassname + ' w-48'}>{'session'}</p>
+                    <p className={OrderTabClassname + ' w-32'}>{'created at'}</p>
+                    <p className={OrderTabClassname + ' w-24'}>{'appoinment'}</p>
+                    <p className={OrderTabClassname + ' w-20'}>{'product'}</p>
+                    <p className={OrderTabClassname + ' w-32'}>{'price(AUD)'}</p>
+                    <p className={OrderTabClassname + ' w-32'}>{'status'}</p>
+                    <p className={OrderTabClassname + ' flex-grow '}>{'action'}</p>
+                </div>
+                <ul className='mb-2'>
+                    {ComingEnquiryList.map((enquiry, index) => (
+                        <EnquiryRecord key={index} enquiry={enquiry} onOrderGenerate={onOrderGenerate} />
+                    ))}
+                </ul>
             </div>
-            <ul className='w-full overflow-y-auto mb-2'>
-                {ComingEnquiryList.map((enquiry, index) => (
-                    <EnquiryRecord key={index} enquiry={enquiry} onOrderGenerate={onOrderGenerate} />
-                ))}
-            </ul>
         </div>
     )
 }

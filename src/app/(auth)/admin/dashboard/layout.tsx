@@ -20,8 +20,8 @@ const ClientLayout = ({
     return (
         <div className=" w-full h-full flex">
             <ThemeContext.Provider value={theme}>
-                <div className="w-64 flex flex-col h-full">
-                    <ul className="w-full mt-6">
+                <div className="w-52 flex flex-col h-full">
+                    <ul className="w-full mt-3">
                         {dashboardTabs.map((dashboardTab, index) => (
                             <li
                                 className={path == dashboardTab.href ? TabSelectedClassname : TabUnSelectedClassname} key={index}
@@ -36,11 +36,11 @@ const ClientLayout = ({
 
                     </div>
                 </div>
-                <div className='w-full h-full flex'>
-                    <div className="w-full m-12">{children}</div>
+                <div className='w-full h-full flex py-6 px-2'>
+                    {children}
                 </div>
-                <div className='w-1/6 h-full flex'>
-                    <div className="w-full my-12 mx-4 "><Calendar /></div>
+                <div className='w-1/6 h-full flex py-6 px-2'>
+                    <Calendar />
                 </div>
             </ThemeContext.Provider>
         </div>
@@ -54,10 +54,10 @@ const ThemeSelector = ({ theme, SetTheme }: ThemeSelectorTypeInput) => {
     }
     return (
         <div className="w-full h-12 flex items-center">
-            <p className="text-sm ml-9">Theme:</p>
-            <div className="bg-white/20 h-3 w-8 flex ml-8 rounded-xl cursor-pointer" onClick={HandleOnClick}>
-                {theme == THEME_BACKGROUNDCOLOR_WHITE && <BsFillSunFill size={30} className=" bg-white/20 rounded-full p-1 m-auto -mt-2 -ml-4" />}
-                {theme == THEME_BACKGROUNDCOLOR_BLACK && <BsFillMoonFill size={30} className="bg-white/20 rounded-full p-1 m-auto -mt-2 -mr-4" />}
+            <p className="text-xs ml-6">Theme:</p>
+            <div className="bg-white/20 h-2 w-6 flex ml-4 rounded-xl cursor-pointer" onClick={HandleOnClick}>
+                {theme == THEME_BACKGROUNDCOLOR_WHITE && <BsFillSunFill size={20} className=" bg-white/20 rounded-full p-1 m-auto -mt-1.5 -ml-2" />}
+                {theme == THEME_BACKGROUNDCOLOR_BLACK && <BsFillMoonFill size={20} className="bg-white/20 rounded-full p-1 m-auto -mt-1.5 -mr-2" />}
             </div>
         </div>
     )
@@ -66,6 +66,6 @@ type ThemeSelectorTypeInput = {
     theme: string,
     SetTheme: (theme: string) => void,
 }
-const TabUnSelectedClassname = 'm-6 p-3 rounded-md cursor-pointer hover:bg-white/15 text-xl text-white word-wrap'
-const TabSelectedClassname = 'm-6 p-3 rounded-md cursor-pointer bg-white/15 text-xl text-white word-wrap'
+const TabUnSelectedClassname = 'm-3 p-3 rounded-md cursor-pointer hover:bg-white/15 text-xl text-white word-wrap'
+const TabSelectedClassname = 'm-3 p-3 rounded-md cursor-pointer bg-white/15 text-xl text-white word-wrap'
 export default ClientLayout

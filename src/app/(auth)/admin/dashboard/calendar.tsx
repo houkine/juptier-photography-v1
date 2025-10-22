@@ -15,23 +15,23 @@ const Calendar = () => {
 
     return (
         <div className='w-full h-full flex flex-col'>
-            <div className={'flex py-4 space-x-12 justify-center rounded-xl ' + theme}>
+            <div className={'flex py-4 space-x-2 justify-center rounded-xl ' + theme}>
                 <div className='flex flex-col my-auto'>
                     <div className='flex'>
-                        <p className='text-white text-sm my-auto w-8 flex justify-end'>from</p>
+                        <p className='text-white text-xs my-auto w-6 flex justify-end'>from</p>
                         <input type='date' className={DateInputClassname}
                             value={startDate} onChange={e => setStartDate(e.target.value)}
                         />
                     </div>
                     <div className='flex'>
-                        <p className='text-white text-sm my-auto w-8 flex justify-end'>to</p>
+                        <p className='text-white text-xs my-auto w-6 flex justify-end'>to</p>
                         <input type='date' className={DateInputClassname}
                             value={endDate} onChange={e => setEndDate(e.target.value)}
                         />
                     </div>
                 </div>
                 <div
-                    className='bg-white/20 h-16 w-20 flex justify-center items-center rounded-lg cursor-pointer text-white text-lg hover:bg-white/30'
+                    className='bg-white/20 p-1 text-sm flex justify-center items-center rounded-lg cursor-pointer text-white hover:bg-white/30'
                     onClick={DateReset}
                 >Reset</div>
             </div>
@@ -87,15 +87,15 @@ const CalendarDate = ({ date }: CalendarDateInputType) => {
         <li className={'flex p-4 rounded-lg mr-2 ' + theme}>
             <div className='flex flex-col w-16 h-full text-white '>
                 <p className='text-xs'>{year}</p>
-                <p className='text-sm'>{month + '月'}</p>
-                <p className='text-3xl mt-2'>{day}</p>
-                <p className='text-xl'>{GetDay(date)}</p>
+                <p className='text-xs'>{month + '月'}</p>
+                <p className='text-2xl mt-2'>{day}</p>
+                <p className='text-sm'>{GetDay(date)}</p>
             </div>
-            <ul className='flex space-x-2'>
+            <ul className='w-full flex flex-col space-y-2'>
                 {confirmations.map((confirmation, index) => (
                     <li
                         key={index}
-                        className={'flex flex-col p-2 justify-center' + GetCardColour(confirmation.time)}
+                        className={'w-full flex flex-col p-2 rounded justify-center' + GetCardColour(confirmation.time)}
                     >
                         {/* <p className='text-lg'>{confirmation.time}</p> */}
                         <p className='text-sm text-center'>{confirmation.photographyType}</p>
@@ -141,7 +141,7 @@ const GetDateFormat = (date: Date): string => {
 const confirmationList = [
     {
         id: '1',
-        date: '15-10-2025',
+        date: '20-10-2025',
         time: 'morning',
         photographyType: 'Portrait',
         location: 'UQ campus',
@@ -149,7 +149,7 @@ const confirmationList = [
     },
     {
         id: '2',
-        date: '16-10-2025',
+        date: '21-10-2025',
         time: 'morning',
         photographyType: 'lite',
         location: 'UQ campus',
@@ -157,15 +157,15 @@ const confirmationList = [
     },
     {
         id: '3',
-        date: '16-10-2025',
+        date: '21-10-2025',
         time: 'afternoon',
         photographyType: 'Portrait',
-        location: 'UQ campus',
+        location: 'The Spit Gold Coast, Seaworld Dr, Main Beach QLD 4217',
         user: 'person1',
     },
     {
         id: '4',
-        date: '16-10-2025',
+        date: '21-10-2025',
         time: 'evening',
         photographyType: 'Portrait',
         location: 'UQ campus',
@@ -173,7 +173,7 @@ const confirmationList = [
     },
     {
         id: '5',
-        date: '18-10-2025',
+        date: '23-10-2025',
         time: 'morning',
         photographyType: 'wedding',
         location: 'UQ campus',
@@ -181,7 +181,7 @@ const confirmationList = [
     },
     {
         id: '6',
-        date: '19-10-2025',
+        date: '24-10-2025',
         time: 'morning',
         photographyType: 'Portrait',
         location: 'UQ campus',
@@ -189,5 +189,5 @@ const confirmationList = [
     },
 ]
 
-const DateInputClassname = 'text-sm appearance-none outline-none bg-transparent ml-4 border-b-2 border-gray-400 text-white dark:[color-scheme:dark] '
+const DateInputClassname = 'text-xs appearance-none outline-none bg-transparent ml-2 border-b-2 border-gray-400 text-white dark:[color-scheme:dark] w-24 '
 export default Calendar
