@@ -1,6 +1,6 @@
 'use client'
 import React, { Dispatch, SetStateAction, useContext } from 'react'
-import { ThemeContext } from '../ThemeContext';
+import { ThemeContext } from '../Context';
 import { BsTrashFill } from 'react-icons/bs';
 
 const EmailRecord = ({ email, setEmail, currentEmailId }: EmailRecordInputType) => {

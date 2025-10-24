@@ -1,6 +1,6 @@
 'use client'
 import React, { useContext, useState } from 'react'
-import { ThemeContext } from './ThemeContext'
+import { ThemeContext } from './Context'
 
 const Calendar = () => {
     const theme = useContext(ThemeContext);
@@ -14,7 +14,7 @@ const Calendar = () => {
     }
 
     return (
-        <div className='w-full h-full flex flex-col'>
+        <div className={' h-full flex flex-col w-52'}>
             <div className={'flex py-4 space-x-2 justify-center rounded-xl ' + theme}>
                 <div className='flex flex-col my-auto'>
                     <div className='flex'>
@@ -52,7 +52,7 @@ const CalendarDateList = ({ startDate, endDate }: CalendarDateListInputType) => 
         _currentDate = new Date(_currentDate.valueOf() + ONE_DAY_DATE_VALUEOF_GAP)
     }
     return (
-        <ul className='w-full mt-8 space-y-2 overflow-y-auto'>
+        <ul className='flex-1 mt-8 space-y-2 overflow-y-auto'>
             {dates.map((date, index) => (
                 <CalendarDate date={date} key={index} />
             ))}

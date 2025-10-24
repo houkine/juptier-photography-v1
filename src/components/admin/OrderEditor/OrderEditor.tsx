@@ -1,6 +1,6 @@
 'use client'
 
-import { ThemeContext } from "@/app/(auth)/admin/dashboard/ThemeContext";
+import { ThemeContext } from "@/app/(auth)/admin/dashboard/Context";
 import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react"
 import { BsSearch, BsPlusCircleFill, BsXCircleFill, BsCheckLg } from "react-icons/bs";
 

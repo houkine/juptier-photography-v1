@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation'
 import React, { useContext } from 'react'
 import { BsPencilFill, BsTrashFill, BsCheckLg } from "react-icons/bs";
-import { ThemeContext } from './ThemeContext';
+import { ThemeContext } from './Context';
 
 const Page = () => {
     return (

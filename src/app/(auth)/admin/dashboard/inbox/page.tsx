@@ -1,19 +1,20 @@
 'use client'
 import OrderEditor from '@/components/admin/OrderEditor/OrderEditor'
 import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../ThemeContext'
+import { OrderPanelSwitchContext, ThemeContext } from '../Context'
 import EmailRecord, { EmailType } from './EmailRecord'
 import Pagenation from './Pagenation'
 import { BsBoxArrowRight, BsFillReplyFill, BsTrashFill } from 'react-icons/bs'
 
 const Page = () => {
+  const isOrderEditorOpen = useContext(OrderPanelSwitchContext);
   const [email, setEmail] = useState<EmailType | null>(null)
   return (
     <div className='w-full h-full flex'>
       <div className='h-full w-1/6 flex px-2'><EmailList setEmail={setEmail} currentEmailId={email?.id} /></div>
-      <div className='h-full w-3/6 flex px-2'><EmailDetail email={email} /></div>
+      <div className='h-full flex-1 flex px-2'><EmailDetail email={email} /></div>
 
-      {email && <div className='h-full w-2/6 flex px-2'><OrderEditor /></div>}
+      {email && isOrderEditorOpen && <div className='h-full w-2/6 flex px-2'><OrderEditor /></div>}
 
     </div>
   )

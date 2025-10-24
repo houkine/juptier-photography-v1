@@ -3,8 +3,8 @@ import dashboardTabs from "@/constant/dashboardTabs";
 import { usePathname, useRouter } from "next/navigation";
 import Calendar from "./calendar";
 import { useState } from "react";
-import { THEME_BACKGROUNDCOLOR_BLACK, THEME_BACKGROUNDCOLOR_WHITE, ThemeContext } from "./ThemeContext";
-import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
+import { THEME_BACKGROUNDCOLOR_BLACK, THEME_BACKGROUNDCOLOR_WHITE, ThemeContext, OrderPanelSwitchContext } from "./Context";
+import { BsFillSunFill, BsFillMoonFill, BsCalendarHeart, BsCaretLeftFill, BsCaretRightFill, BsBox2Heart } from "react-icons/bs";
 
 
 
@@ -17,17 +17,22 @@ const ClientLayout = ({
     const router = useRouter()
     const [theme, SetTheme] = useState(THEME_BACKGROUNDCOLOR_BLACK)
 
+    const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false)
+    const [isOrderEditorOpen, setIsOrderEditorOpen] = useState<boolean>(false)
+
     return (
         <div className=" w-full h-full flex">
             <ThemeContext.Provider value={theme}>
-                <div className="w-52 flex flex-col h-full">
-                    <ul className="w-full mt-3">
+                <div className="flex flex-col h-full">
+                    <ul className=" mt-3">
                         {dashboardTabs.map((dashboardTab, index) => (
                             <li
-                                className={path == dashboardTab.href ? TabSelectedClassname : TabUnSelectedClassname} key={index}
+                                className={'m-3 p-3 rounded-md cursor-pointer  flex ' + (path == dashboardTab.href ? 'bg-white/15 ' : 'hover:bg-white/15')} key={index}
+                                // className={path == dashboardTab.href ? TabSelectedClassname : TabUnSelectedClassname} key={index}
                                 onClick={() => path != dashboardTab.href && router.push(dashboardTab.href)}
                             >
-                                {dashboardTab.title}
+                                <span className="block 2xl:invisible">{dashboardTab.icon}</span>
+                                <p className="text-xl text-white word-wrap hidden 2xl:block">{dashboardTab.title}</p>
                             </li>
                         ))}
                     </ul>
@@ -36,11 +41,31 @@ const ClientLayout = ({
 
                     </div>
                 </div>
-                <div className='w-full h-full flex py-6 px-2'>
-                    {children}
+                <div className='flex-1 py-6 flex px-2'>
+                    <OrderPanelSwitchContext.Provider value={isOrderEditorOpen}>
+                        {children}
+                    </OrderPanelSwitchContext.Provider>
                 </div>
-                <div className='w-1/6 h-full flex py-6 px-2'>
-                    <Calendar />
+                <div className='h-full flex py-6 px-2'>
+                    {isCalendarOpen && <Calendar />}
+                </div>
+                <div className="w-8 h-full py-6 ml-2 flex flex-col space-y-4">
+                    <div className='flex flex-col bg-white/20 p-1 rounded-sm space-y-2'>
+                        <BsCalendarHeart size={15} />
+                        {isCalendarOpen ?
+                            <BsCaretRightFill size={15} className="cursor-pointer" onClick={() => setIsCalendarOpen(false)} />
+                            :
+                            <BsCaretLeftFill size={15} className="cursor-pointer" onClick={() => setIsCalendarOpen(true)} />
+                        }
+                    </div>
+                    <div className='flex flex-col bg-white/20 p-1 rounded-sm space-y-2'>
+                        <BsBox2Heart size={15} />
+                        {isOrderEditorOpen ?
+                            <BsCaretRightFill size={15} className="cursor-pointer" onClick={() => setIsOrderEditorOpen(false)} />
+                            :
+                            <BsCaretLeftFill size={15} className="cursor-pointer" onClick={() => setIsOrderEditorOpen(true)} />
+                        }
+                    </div>
                 </div>
             </ThemeContext.Provider>
         </div>
@@ -54,7 +79,6 @@ const ThemeSelector = ({ theme, SetTheme }: ThemeSelectorTypeInput) => {
     }
     return (
         <div className="w-full h-12 flex items-center">
-            <p className="text-xs ml-6">Theme:</p>
             <div className="bg-white/20 h-2 w-6 flex ml-4 rounded-xl cursor-pointer" onClick={HandleOnClick}>
                 {theme == THEME_BACKGROUNDCOLOR_WHITE && <BsFillSunFill size={20} className=" bg-white/20 rounded-full p-1 m-auto -mt-1.5 -ml-2" />}
                 {theme == THEME_BACKGROUNDCOLOR_BLACK && <BsFillMoonFill size={20} className="bg-white/20 rounded-full p-1 m-auto -mt-1.5 -mr-2" />}
@@ -66,6 +90,6 @@ type ThemeSelectorTypeInput = {
     theme: string,
     SetTheme: (theme: string) => void,
 }
-const TabUnSelectedClassname = 'm-3 p-3 rounded-md cursor-pointer hover:bg-white/15 text-xl text-white word-wrap'
-const TabSelectedClassname = 'm-3 p-3 rounded-md cursor-pointer bg-white/15 text-xl text-white word-wrap'
+// const TabUnSelectedClassname = 'm-3 p-3 rounded-md cursor-pointer hover:bg-white/15 text-xl text-white word-wrap'
+// const TabSelectedClassname = 'm-3 p-3 rounded-md cursor-pointer bg-white/15 text-xl text-white word-wrap'
 export default ClientLayout
