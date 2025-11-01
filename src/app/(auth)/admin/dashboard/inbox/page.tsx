@@ -4,7 +4,7 @@ import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from
 import { OrderPanelSwitchContext, ThemeContext } from '../Context'
 import EmailRecord, { EmailType } from './EmailRecord'
 import Pagenation from './Pagenation'
-import { BsBoxArrowRight, BsFillReplyFill, BsTrashFill } from 'react-icons/bs'
+import { BsBoxArrowInDown, BsBoxArrowRight, BsBoxArrowUp, BsFillReplyFill, BsTrashFill } from 'react-icons/bs'
 
 const Page = () => {
   const isOrderEditorOpen = useContext(OrderPanelSwitchContext);
@@ -34,13 +34,13 @@ const EmailList = ({ setEmail, currentEmailId }: EmailListInputType) => {
           className={tab == EmailTabEnum.Received ? SpanSelectedClassname : SpanUnSelectedClassname}
           onClick={() => tab != EmailTabEnum.Received && setTab(EmailTabEnum.Received)}
         >
-          {'Received'}
+          <BsBoxArrowInDown size={20} className='text-white' />
         </span>
         <span
           className={tab == EmailTabEnum.Sent ? SpanSelectedClassname : SpanUnSelectedClassname}
           onClick={() => tab != EmailTabEnum.Sent && setTab(EmailTabEnum.Sent)}
         >
-          {'Sent'}
+          <BsBoxArrowUp size={20} className='text-white' />
         </span>
       </div>
       {tab == EmailTabEnum.Received && <ReceivedEmailList setEmail={setEmail} currentEmailId={currentEmailId} />}
