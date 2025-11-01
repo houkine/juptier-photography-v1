@@ -198,24 +198,24 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
         <div className={'w-full h-full flex flex-col rounded-lg ' + theme}>
             {orderId ?
                 <div className="w-full h-20 flex flex-col my-4 ml-4">
-                    <p className="text-4xl">{'Order Update: '}</p>
+                    <p className="text-4xl text-white">{'Order Update: '}</p>
                     <p className="text-base text-gray-300 mt-2">{orderId}</p>
                 </div> :
                 <div className="w-full h-20 flex my-4 ml-4">
-                    <p className="text-4xl">{'New Order'}</p>
+                    <p className="text-4xl text-white">{'New Order'}</p>
                 </div>
             }
             <Line />
             <div className="flex flex-col w-full overflow-y-auto p-4 mt-1">
                 <div className="flex w-full items-center">
-                    <p className="text-2xl">User</p>
-                    <p className="text-sm ml-12">Link order with a user</p>
+                    <p className="text-2xl text-white">User</p>
+                    <p className="text-sm ml-12 text-white">Link order with a user</p>
                     <input type="checkbox" className="ml-2" checked={isHavingUser} onChange={HandleUserCheckboxonChange} />
                 </div>
                 <div className="w-full flex flex-col mx-auto">
                     <div className="flex w-full">
                         <TextInput1 label={'user id'} value={userId} OnChange={setUserId} isDisabled={!isHavingUser} classname='mt-4 w-full' >
-                            <BsSearch onClick={GetUserById} size={20} className="my-auto mx-2 cursor-pointer" />
+                            <BsSearch onClick={GetUserById} size={20} className="my-auto mx-2 cursor-pointer  text-white" />
                         </TextInput1>
                     </div>
                     <TextInput1 label={'user name'} value={userName} OnChange={setUserName} isDisabled={!isHavingUser} classname='mt-2 w-full' />
@@ -225,8 +225,8 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
 
 
                 <div className="flex w-full mt-10 items-center">
-                    <p className="text-2xl">Photography Service</p>
-                    <p className="text-sm ml-12">Link order with a photography session</p>
+                    <p className="text-2xl text-white">Photography Service</p>
+                    <p className="text-sm ml-12 text-white">Link order with a photography session</p>
                     <input type="checkbox" className="ml-2" checked={isHavingUser} onChange={HandleSessionCheckboxonChange} />
                 </div>
                 <div className="w-full flex flex-col mx-auto">
@@ -239,7 +239,7 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
                 </div>
 
                 <div className="flex w-full mt-10 items-center">
-                    <p className="text-2xl">Appoinment</p>
+                    <p className="text-2xl text-white">Appoinment</p>
                 </div>
                 <ul className="w-full space-y-2 ">
                     {appoinmentList.map((appoinment, index) => <li key={index} className="flex flex-col w-full mt-2 border-2 border-gray-300 px-4 py-2 rounded-lg">
@@ -254,18 +254,18 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
                             className="flex items-center justify-center w-full bg-white/10 rounded-md p-2 cursor-pointer mt-2 hover:bg-white/20"
                             onClick={() => DeleteAppoinment(index)}
                         >
-                            <BsXCircleFill size={20} />
-                            <p className="ml-2 text-sm">Delete</p>
+                            <BsXCircleFill size={20} className=" text-white" />
+                            <p className="ml-2 text-sm text-white">Delete</p>
                         </div>
                     </li>)}
                 </ul>
                 <div className="flex items-center justify-center w-full bg-white/10 rounded-lg p-4 cursor-pointer mt-2 hover:bg-white/20" onClick={CreateAppoinment}>
-                    <BsPlusCircleFill size={25} />
-                    <p className="ml-2 text-lg">Add new appoinment</p>
+                    <BsPlusCircleFill size={25} className=" text-white" />
+                    <p className="ml-2 text-lg text-white">Add new appoinment</p>
                 </div>
 
                 <div className="flex w-full mt-10 items-center">
-                    <p className="text-2xl">Product</p>
+                    <p className="text-2xl text-white">Product</p>
                 </div>
                 <ul className="w-full space-y-2 ">
                     {productList.map((product, index) => <li key={index} className="flex flex-col w-full mt-2 border-2 border-gray-300 px-4 py-2 rounded-lg">
@@ -281,28 +281,28 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
                             className="flex items-center justify-center w-full bg-white/10 rounded-md p-2 cursor-pointer mt-2 hover:bg-white/20"
                             onClick={() => DeleteProduct(index)}
                         >
-                            <BsXCircleFill size={20} />
-                            <p className="ml-2 text-sm">Delete</p>
+                            <BsXCircleFill size={20} className=" text-white" />
+                            <p className="ml-2 text-sm text-white">Delete</p>
                         </div>
                     </li>)}
                 </ul>
                 <div className="flex items-center justify-center w-full bg-white/10 rounded-lg p-4 cursor-pointer mt-2 hover:bg-white/20" onClick={CreateProduct}>
-                    <BsPlusCircleFill size={25} />
-                    <p className="ml-2 text-lg">Add new product</p>
+                    <BsPlusCircleFill size={25} className=" text-white" />
+                    <p className="ml-2 text-lg text-white">Add new product</p>
                 </div>
 
                 <div className="flex w-full mt-10 items-center">
-                    <p className="text-2xl">Postscript</p>
+                    <p className="text-2xl text-white">Postscript</p>
                 </div>
                 <div className="w-full flex mt-2">
                     <textarea
-                        className="w-full h-24 bg-transparent border-2 border-gray-300 rounded-lg"
+                        className="w-full h-24 bg-transparent border-2 border-gray-300 rounded-lg text-white"
                         value={postscript} onChange={e => setPostscript(e.target.value)}
                     />
                 </div>
 
                 <div className="flex w-full mt-10 items-center">
-                    <p className="text-2xl">Status</p>
+                    <p className="text-2xl text-white">Status</p>
                 </div>
                 <div className="w-full flex flex-col mx-auto">
                     <TextInput1 label={'status'} value={status} OnChange={setStatus} classname='mt-2 w-full' />
@@ -321,7 +321,7 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
                 </div>
 
                 <div className="flex w-full mt-10 items-center">
-                    <p className="text-2xl">Price</p>
+                    <p className="text-2xl text-white">Price</p>
                 </div>
                 <div className="w-full flex flex-col mx-auto">
                     <NumberInput label={'total price'} value={totalPrice} OnChange={setTotalPrice} classname='mt-2 w-full' />
@@ -370,11 +370,11 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
                 )}
 
                 <div className="flex w-full mt-10 items-center">
-                    <p className="text-2xl" title="only we can see this">Remark</p>
+                    <p className="text-2xl text-white" title="only we can see this">Remark</p>
                 </div>
                 <div className="w-full flex mt-2">
                     <textarea
-                        className="w-full h-24 bg-transparent border-2 border-gray-300 rounded-lg"
+                        className="w-full h-24 bg-transparent border-2 border-gray-300 rounded-lg text-white"
                         value={remark} onChange={e => setRemark(e.target.value)}
                     />
                 </div>

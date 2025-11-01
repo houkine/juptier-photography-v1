@@ -4,7 +4,7 @@ import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from
 import { OrderPanelSwitchContext, ThemeContext } from '../Context'
 import EmailRecord, { EmailType } from './EmailRecord'
 import Pagenation from './Pagenation'
-import { BsBoxArrowRight, BsFillReplyFill, BsTrashFill } from 'react-icons/bs'
+import { BsBoxArrowInDown, BsBoxArrowRight, BsBoxArrowUp, BsFillReplyFill, BsTrashFill } from 'react-icons/bs'
 
 const Page = () => {
   const isOrderEditorOpen = useContext(OrderPanelSwitchContext);
@@ -34,13 +34,13 @@ const EmailList = ({ setEmail, currentEmailId }: EmailListInputType) => {
           className={tab == EmailTabEnum.Received ? SpanSelectedClassname : SpanUnSelectedClassname}
           onClick={() => tab != EmailTabEnum.Received && setTab(EmailTabEnum.Received)}
         >
-          {'Received'}
+          <BsBoxArrowInDown size={20} className='text-white' />
         </span>
         <span
           className={tab == EmailTabEnum.Sent ? SpanSelectedClassname : SpanUnSelectedClassname}
           onClick={() => tab != EmailTabEnum.Sent && setTab(EmailTabEnum.Sent)}
         >
-          {'Sent'}
+          <BsBoxArrowUp size={20} className='text-white' />
         </span>
       </div>
       {tab == EmailTabEnum.Received && <ReceivedEmailList setEmail={setEmail} currentEmailId={currentEmailId} />}
@@ -146,9 +146,9 @@ const EmailDetail = ({ email }: EmailDetailInputType) => {
         <div className='mt-8 w-full flex justify-between'>
           <p className='text-3xl'>{email.subject}</p>
           <span className='flex mr-12 space-x-4 items-center'>
-            <BsFillReplyFill size={30} title='reply' onClick={handleReplyOnClick} className='cursor-pointer' />
-            <BsBoxArrowRight size={30} title='forward' onClick={handleForwardOnClick} className='cursor-pointer' />
-            <BsTrashFill size={30} title='delete' onClick={handleDeleteOnClick} className='cursor-pointer' />
+            <BsFillReplyFill size={20} title='reply' onClick={handleReplyOnClick} className='cursor-pointer text-white' />
+            <BsBoxArrowRight size={20} title='forward' onClick={handleForwardOnClick} className='cursor-pointer text-white' />
+            <BsTrashFill size={20} title='delete' onClick={handleDeleteOnClick} className='cursor-pointer text-white' />
           </span>
         </div>
         <p className='mt-8 text-base text-gray-300'>{'From: ' + email.from}</p>

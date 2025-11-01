@@ -19,7 +19,7 @@ const EmailRecord = ({ email, setEmail, currentEmailId }: EmailRecordInputType) 
                 <p className='text-white text-lg'>{email.subject}</p>
                 <p className='text-gray-300 text-sm'>{email.from}</p>
             </div>
-            <div className='h-full ml-2 px-2 flex rounded-xl cursor-pointer hover:bg-red-300/20'><BsTrashFill size={20} className='m-auto' /></div>
+            <div className='h-full ml-2 px-2 flex rounded-xl cursor-pointer hover:bg-red-300/20'><BsTrashFill size={20} className='m-auto text-white' /></div>
         </li>
     )
 }

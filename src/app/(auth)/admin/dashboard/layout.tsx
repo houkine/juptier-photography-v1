@@ -31,7 +31,7 @@ const ClientLayout = ({
                                 // className={path == dashboardTab.href ? TabSelectedClassname : TabUnSelectedClassname} key={index}
                                 onClick={() => path != dashboardTab.href && router.push(dashboardTab.href)}
                             >
-                                <span className="block 2xl:invisible">{dashboardTab.icon}</span>
+                                <span className="block text-white 2xl:invisible">{dashboardTab.icon}</span>
                                 <p className="text-xl text-white word-wrap hidden 2xl:block">{dashboardTab.title}</p>
                             </li>
                         ))}
@@ -51,19 +51,19 @@ const ClientLayout = ({
                 </div>
                 <div className="w-8 h-full py-6 ml-2 flex flex-col space-y-4">
                     <div className='flex flex-col bg-white/20 p-1 rounded-sm space-y-2'>
-                        <BsCalendarHeart size={15} />
+                        <BsCalendarHeart size={15} className="text-white" />
                         {isCalendarOpen ?
-                            <BsCaretRightFill size={15} className="cursor-pointer" onClick={() => setIsCalendarOpen(false)} />
+                            <BsCaretRightFill size={15} className="cursor-pointer text-white" onClick={() => setIsCalendarOpen(false)} />
                             :
-                            <BsCaretLeftFill size={15} className="cursor-pointer" onClick={() => setIsCalendarOpen(true)} />
+                            <BsCaretLeftFill size={15} className="cursor-pointer text-white" onClick={() => setIsCalendarOpen(true)} />
                         }
                     </div>
                     <div className='flex flex-col bg-white/20 p-1 rounded-sm space-y-2'>
-                        <BsBox2Heart size={15} />
+                        <BsBox2Heart size={15} className="text-white" />
                         {isOrderEditorOpen ?
-                            <BsCaretRightFill size={15} className="cursor-pointer" onClick={() => setIsOrderEditorOpen(false)} />
+                            <BsCaretRightFill size={15} className="cursor-pointer text-white" onClick={() => setIsOrderEditorOpen(false)} />
                             :
-                            <BsCaretLeftFill size={15} className="cursor-pointer" onClick={() => setIsOrderEditorOpen(true)} />
+                            <BsCaretLeftFill size={15} className="cursor-pointer text-white" onClick={() => setIsOrderEditorOpen(true)} />
                         }
                     </div>
                 </div>
@@ -80,8 +80,8 @@ const ThemeSelector = ({ theme, SetTheme }: ThemeSelectorTypeInput) => {
     return (
         <div className="w-full h-12 flex items-center">
             <div className="bg-white/20 h-2 w-6 flex ml-4 rounded-xl cursor-pointer" onClick={HandleOnClick}>
-                {theme == THEME_BACKGROUNDCOLOR_WHITE && <BsFillSunFill size={20} className=" bg-white/20 rounded-full p-1 m-auto -mt-1.5 -ml-2" />}
-                {theme == THEME_BACKGROUNDCOLOR_BLACK && <BsFillMoonFill size={20} className="bg-white/20 rounded-full p-1 m-auto -mt-1.5 -mr-2" />}
+                {theme == THEME_BACKGROUNDCOLOR_WHITE && <BsFillSunFill size={20} className=" bg-white/20 rounded-full p-1 m-auto -mt-1.5 -ml-2 text-white" />}
+                {theme == THEME_BACKGROUNDCOLOR_BLACK && <BsFillMoonFill size={20} className="bg-white/20 rounded-full p-1 m-auto -mt-1.5 -mr-2 text-white" />}
             </div>
         </div>
     )
