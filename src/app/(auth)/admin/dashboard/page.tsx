@@ -172,11 +172,11 @@ const UpdatedOrders = () => {
         <div className={'h-full w-full rounded-lg flex flex-col ' + theme}>
             <div className='ml-8 mt-4 text-xl flex'>Updated Orders</div>
             <UpdatedOrdersTableHeader />
-            <div className='flex flex-col overflow-y-auto'>
+            <ul className='w-full overflow-y-auto'>
                 {UpdatedOrderList.map((UpdatedOrder, index) => (
                     <UpdatedOrdersTableRecord record={UpdatedOrder} key={index} />
                 ))}
-            </div>
+            </ul>
         </div>
     )
 }
@@ -192,7 +192,7 @@ const UpdatedOrdersTableHeader = () => (
     </div>
 )
 const UpdatedOrdersTableRecord = ({ record }: UpdatedOrdersRecordTabtypeInout) => (
-    <div className={' h-12 w-full flex text-white border-b-2 border-white/30 hover:bg-white/20 cursor-pointer'}>
+    <li className={' h-12 w-full flex text-white border-b-2 border-white/30 hover:bg-white/20 cursor-pointer'}>
         <p className='w-16 h-full text-sm flex items-center justify-center ml-4'>{record.id}</p>
         <p className='w-28 h-full text-sm flex items-center justify-center'>{record.type}</p>
         <p className='w-96 h-full text-sm flex items-center justify-center'>{record.location}</p>
@@ -204,7 +204,7 @@ const UpdatedOrdersTableRecord = ({ record }: UpdatedOrdersRecordTabtypeInout) =
             <BsTrashFill className='h-full ml-4' />
             <BsCheckLg className='h-full ml-4' />
         </div>
-    </div>
+    </li>
 )
 type UpdatedOrdersRecordTabtypeInout = {
     record: UpdatedOrdersRecordTabtype,

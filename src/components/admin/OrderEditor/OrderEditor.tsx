@@ -1,8 +1,14 @@
 'use client'
 
 import { ThemeContext } from "@/app/(auth)/admin/dashboard/Context";
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react"
-import { BsSearch, BsPlusCircleFill, BsXCircleFill, BsCheckLg } from "react-icons/bs";
+import { useContext, useEffect, useState } from "react"
+import { createPortal } from "react-dom";
+import { BsSearch, BsPlusCircleFill, BsXCircleFill, BsCheckLg, BsCamera } from "react-icons/bs";
+import PhotoUploader from "./PhotoUploader";
+import TextInput1 from "../TextInput/TextInput1";
+import TextInput2 from "../TextInput/TextInput2";
+import NumberInput from "../TextInput/NumberInput";
+import Button1 from "../Button/Button1";
 
 const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
     const theme = useContext(ThemeContext);
@@ -38,6 +44,10 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
     const [totalPrice, setTotalPrice] = useState<number>(0)
     const [depositPrice, setDepositPrice] = useState<number>(0)
     const [balancePrice, setBalancePrice] = useState<number>(0)
+
+    const [isOriginalPhotoEditorOpen, setIsOriginalPhotoEditorOpen] = useState<boolean>(false)
+    const [originalPhotoList, setOriginalPhotoList] = useState<string[]>(defaultPhotoList)
+
 
     const [remark, setRemark] = useState<string>('')
 
@@ -75,6 +85,7 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
             setDepositPrice(order.depositPrice)
             setBalancePrice(order.balancePrice)
 
+            setOriginalPhotoList(defaultPhotoList)
             setRemark(order.remark)
 
         }
@@ -319,6 +330,46 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
                 </div>
 
                 <div className="flex w-full mt-10 items-center">
+                    <p className="text-2xl">Original Photos</p>
+                </div>
+                <p className="text-sm">100 photo uploaded</p>
+                <div
+                    className="flex items-center justify-center w-full bg-white/10 rounded-lg p-4 cursor-pointer mt-2 hover:bg-white/20"
+                    onClick={() => setIsOriginalPhotoEditorOpen(true)}
+                >
+                    <BsCamera size={25} />
+                    <p className="ml-2 text-lg">Photo Uploader</p>
+                </div>
+                {isOriginalPhotoEditorOpen && createPortal(
+                    <div className="absolute inset-0 w-screen h-screen flex">
+                        <div className="flex w-2/3 2xl:w-1/2 h-3/4 2xl:h-2/3 m-auto">
+                            <PhotoUploader photoList={originalPhotoList} setPhotoList={setOriginalPhotoList} onClose={() => setIsOriginalPhotoEditorOpen(false)} title={"Original Photos"} />
+                        </div>
+                    </div>,
+                    document.body
+                )}
+
+                <div className="flex w-full mt-10 items-center">
+                    <p className="text-2xl">Edited Photos</p>
+                </div>
+                <p className="text-sm">10 photo uploaded</p>
+                <div
+                    className="flex items-center justify-center w-full bg-white/10 rounded-lg p-4 cursor-pointer mt-2 hover:bg-white/20"
+                    onClick={() => setIsOriginalPhotoEditorOpen(true)}
+                >
+                    <BsCamera size={25} />
+                    <p className="ml-2 text-lg">Photo Uploader</p>
+                </div>
+                {isOriginalPhotoEditorOpen && createPortal(
+                    <div className="absolute inset-0 w-screen h-screen flex">
+                        <div className="flex w-2/3 2xl:w-1/2 h-3/4 2xl:h-2/3 m-auto">
+                            <PhotoUploader photoList={originalPhotoList} setPhotoList={setOriginalPhotoList} onClose={() => setIsOriginalPhotoEditorOpen(false)} title={"Original Photos"} />
+                        </div>
+                    </div>,
+                    document.body
+                )}
+
+                <div className="flex w-full mt-10 items-center">
                     <p className="text-2xl" title="only we can see this">Remark</p>
                 </div>
                 <div className="w-full flex mt-2">
@@ -330,9 +381,9 @@ const OrderEditor = ({ enquiry, order }: OrderCreationInputType) => {
             </div>
             <Line />
             <div className="flex justify-between w-full h-24 px-4 my-4 ">
-                <Button title={'Save'} onClick={handleSaveOnClick} />
-                <Button title={'Reset'} onClick={handleResetOnClick} />
-                <Button title={'Clear'} onClick={handleClearOnClick} />
+                <Button1 title={'Save'} onClick={handleSaveOnClick} />
+                <Button1 title={'Reset'} onClick={handleResetOnClick} />
+                <Button1 title={'Clear'} onClick={handleClearOnClick} />
             </div>
         </div>
     )
@@ -346,77 +397,9 @@ const Line = ({ classname }: LineInputType) => <div className={"h-1 bg-white/20 
 type LineInputType = { classname?: string }
 const CompleteTag = () => <p className="flex space-x-2 text-sm text-green-300 items-center text-nowrap"><BsCheckLg size={20} />&nbsp;mark as completed</p>
 
-const TextInput1 = ({ classname, label, value, OnChange, isDisabled = false, children, type = 'text' }: TextInput1InputType) =>
-    <div className={"flex border-b-2 border-white/20 focus-within:border-white min-h-12 " + classname}>
-        <p className="bg-white/20 h-full px-2 flex items-center rounded w-16 text-sm">{label}</p>
-        <input
-            disabled={isDisabled}
-            className={"appearance-none outline-none bg-transparent p-2 w-full disabled:bg-gray-700"}
-            value={value}
-            onChange={e => OnChange(e.target.value)}
-            type={type}
-        />
-        {children}
-    </div>
-type TextInput1InputType = {
-    classname?: string,
-    label?: string,
-    value: string | number,
-    OnChange: Dispatch<SetStateAction<string>>,
-    isDisabled?: boolean,
-    children?: React.ReactNode
-    type?: string,
-}
 
-const TextInput2 = ({ classname, label, value, OnChange, children, type = 'text' }: TextInput2InputType) =>
-    <div className={"flex border-b-2 border-white/20 focus-within:border-white h-12 " + classname}>
-        <p className="my-auto whitespace-nowrap bg-white/20 h-full px-2 flex items-center rounded">{label}</p>
-        <input
-            className={"appearance-none outline-none bg-transparent pl-2 w-full"}
-            value={value}
-            onChange={e => OnChange(e.target.value)}
-            type={type}
-        />
-        {children}
-    </div>
-type TextInput2InputType = {
-    classname?: string,
-    label?: string,
-    value: string | number,
-    OnChange: Dispatch<string>,
-    children?: React.ReactNode
-    type?: string,
-}
-const NumberInput = ({ classname, label, value, OnChange, isDisabled = false, children }: NumberInputInputType) =>
-    <div className={"flex border-b-2 border-white/20 focus-within:border-white h-12 " + classname}>
-        <p className="my-auto whitespace-nowrap bg-white/20 h-full px-2 flex items-center rounded">{label}</p>
-        <input
-            disabled={isDisabled}
-            className={"appearance-none outline-none bg-transparent pl-2 w-full disabled:bg-gray-700"}
-            value={value}
-            onChange={e => OnChange(parseFloat(e.target.value))}
-            type='number'
-        />
-        {children}
-    </div>
-type NumberInputInputType = {
-    classname?: string,
-    label?: string,
-    value: string | number,
-    OnChange: Dispatch<SetStateAction<number>>,
-    isDisabled?: boolean,
-    children?: React.ReactNode
-}
-const Button = ({ onClick, title }: ButtonInputType) => <div
-    className="flex items-center justify-center w-24 h-full bg-white/10 rounded-md cursor-pointer hover:bg-white/20"
-    onClick={onClick}
->
-    <p className="m-auto text-lg">{title}</p>
-</div>
-type ButtonInputType = {
-    onClick: () => void,
-    title: string
-}
+
+
 export type EnquiryType = {
     id: string,
     userId: string,
@@ -476,4 +459,37 @@ export type ProductType = {
     postscript: string,
     remark: string,
 }
+
+const defaultPhotoList = [
+    'photo1.jpg',
+    'photo2.jpg',
+    'photo3.jpg',
+    'photo4.jpg',
+    'photo5.jpg',
+    'photo6.jpg',
+    'photo7.jpg',
+    'photo8.jpg',
+    'photo9.jpg',
+    'photo10.jpg',
+    'photo11.jpg',
+    'photo12.jpg',
+    'photo13.jpg',
+    'photo14.jpg',
+    'photo15.jpg',
+    'photo16.jpg',
+    'photo17.jpg',
+    'photo18.jpg',
+    'photo19.jpg',
+    'photo20.jpg',
+    'photo31.jpg',
+    'photo32.jpg',
+    'photo33.jpg',
+    'photo34.jpg',
+    'photo35.jpg',
+    'photo36.jpg',
+    'photo37.jpg',
+    'photo38.jpg',
+    'photo39.jpg',
+    'photo40.jpg',
+]
 export default OrderEditor

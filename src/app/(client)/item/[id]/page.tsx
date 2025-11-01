@@ -24,10 +24,6 @@ const Page = () => {
         router.push('/personal/cart')
     }
 
-    useEffect(() => {
-        console.log(date);
-
-    }, [date])
 
     const item = id && getItemById(id)
 
