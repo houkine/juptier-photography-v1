@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction } from "react"
 
-const TextInput1 = ({ classname, label, value, OnChange, isDisabled = false, children, type = 'text' }: TextInput1InputType) =>
+
+const TextInput3 = ({ classname, label, value, OnChange, isDisabled = false, children, type = 'text' }: TextInput3InputType) =>
   <div className={"flex border-b-2 border-white/20 focus-within:border-white min-h-12 " + classname}>
     <p className="bg-white/20 h-full px-2 flex items-center justify-center rounded w-1/5 text-sm text-center text-white">{label}</p>
     <input
@@ -12,14 +12,14 @@ const TextInput1 = ({ classname, label, value, OnChange, isDisabled = false, chi
     />
     {children}
   </div>
-type TextInput1InputType = {
+type TextInput3InputType = {
   classname?: string,
   label?: string,
   value: string | number,
-  OnChange: Dispatch<SetStateAction<string>>,
+  OnChange: (text: string) => void,
   isDisabled?: boolean,
   children?: React.ReactNode
   type?: string,
 }
 
-export default TextInput1
+export default TextInput3

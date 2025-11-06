@@ -31,7 +31,7 @@ const ClientLayout = ({
                                 // className={path == dashboardTab.href ? TabSelectedClassname : TabUnSelectedClassname} key={index}
                                 onClick={() => path != dashboardTab.href && router.push(dashboardTab.href)}
                             >
-                                <span className="block text-white 2xl:invisible">{dashboardTab.icon}</span>
+                                <span className="block text-white 2xl:hidden">{dashboardTab.icon}</span>
                                 <p className="text-xl text-white word-wrap hidden 2xl:block">{dashboardTab.title}</p>
                             </li>
                         ))}

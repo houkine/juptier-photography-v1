@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image';
 import { personalPhotographyPricelist } from "@/constant/shopPageContent";
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useParams, useRouter } from 'next/navigation';
 
 // const page = async ({

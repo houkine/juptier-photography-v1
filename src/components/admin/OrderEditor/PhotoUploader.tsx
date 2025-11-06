@@ -41,7 +41,6 @@ const PhotoUploader = ({ title, photoList, setPhotoList, onClose }: PhotoUploade
     <div className='w-full flex shadow-lg p-4 bg-gray-950 border-2 border-gray-300 rounded-lg'>
       <div className="w-1/3 flex flex-col ">
         <p className="mt-2 text-white text-xl ml-2">{title}</p>
-        {/* <div className="w-full mt-2 h-1 bg-gray-300" /> */}
         <ul className="w-full h-2/5 ml-2 mt-2 overflow-y-auto space-y-2 border-2 border-gray-500 p-1">
           {photoList.map((photo, index) => (
             <li className="text-white flex items-center hover:bg-white/20 p-1 cursor-pointer" key={index}>

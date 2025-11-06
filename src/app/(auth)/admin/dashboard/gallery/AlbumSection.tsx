@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import NumberInput from "@/components/admin/TextInput/NumberInput";
 import TextInput1 from "@/components/admin/TextInput/TextInput1";
 import { BsPlusCircleFill } from "react-icons/bs";
-import Template from "./Template";
+import { Template, TemplateModeEnum } from "@/components/share/template/Template";
 
 const AlbumSection = () => {
 
@@ -68,7 +68,7 @@ const AlbumSection = () => {
           className="w-full h-24 bg-transparent border-2 border-gray-300 rounded-lg"
           value={description} onChange={e => setDescription(e.target.value)}
         />
-        <div className="flex h-full mt-4"><Template /></div>
+        <div className="flex h-full mt-4"><Template mode={TemplateModeEnum.Dashboard} /></div>
       </div>
 
     </div>

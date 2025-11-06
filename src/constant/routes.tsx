@@ -1,4 +1,4 @@
-export default [
+const routes = [
     {
         id: 1,
         title: 'HOME',
@@ -31,3 +31,11 @@ export default [
     },
 
 ]
+
+export type routesType = {
+    id: number,
+    title: string,
+    href: string,
+    text_color: string,
+}
+export default routes
