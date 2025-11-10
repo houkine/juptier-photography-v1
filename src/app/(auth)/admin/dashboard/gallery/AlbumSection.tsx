@@ -4,6 +4,7 @@ import NumberInput from "@/components/admin/TextInput/NumberInput";
 import TextInput1 from "@/components/admin/TextInput/TextInput1";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { Template, TemplateModeEnum } from "@/components/share/template/Template";
+import Button1 from "@/components/admin/Button/Button1";
 
 const AlbumSection = () => {
 
@@ -39,6 +40,19 @@ const AlbumSection = () => {
 
     }
   }
+
+  const handleSaveOnClick = (): void => {
+    alert('save button on click')
+  }
+  const handleResetOnClick = (): void => {
+    setAlbumList(AlbumList)
+
+  }
+  const handleClearOnClick = (): void => {
+    setAlbumList([])
+
+  }
+
   return (
     <div className='w-full h-full flex '>
       <ul className='w-48 h-full overflow-y-auto'>
@@ -58,17 +72,22 @@ const AlbumSection = () => {
           <BsPlusCircleFill size={20} className='m-auto' />
         </li>
       </ul>
-      <div className={"flex-1 h-full flex flex-col p-3 rounded-lg "}>
+      <div className={"flex-1 flex flex-col p-3 rounded-lg "}>
         <p className='text-xl text-white'>Details</p>
         <TextInput1 label={'title'} value={title} OnChange={setTitle} classname='mt-2 w-full' />
         <NumberInput label={'sequence'} value={sequence} OnChange={setSequence} classname='mt-2 w-full' />
         <NumberInput label={'current Template'} value={currentTemplate} OnChange={setCurrentTemplate} classname='mt-2 w-full' />
         <p className="text-2xl mt-4" title="only we can see this">description</p>
         <textarea
-          className="w-full h-24 bg-transparent border-2 border-gray-300 rounded-lg"
+          className="w-full min-h-24 bg-transparent border-2 border-gray-300 rounded-lg"
           value={description} onChange={e => setDescription(e.target.value)}
         />
         <div className="flex h-full mt-4"><Template mode={TemplateModeEnum.Dashboard} /></div>
+        <div className="flex h-12 px-4 my-4 space-x-4">
+          <Button1 title={'Save'} onClick={handleSaveOnClick} />
+          <Button1 title={'Reset'} onClick={handleResetOnClick} />
+          <Button1 title={'Clear'} onClick={handleClearOnClick} />
+        </div>
       </div>
 
     </div>

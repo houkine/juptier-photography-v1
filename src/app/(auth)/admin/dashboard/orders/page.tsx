@@ -2,20 +2,20 @@
 import OrderEditor, { OrderType } from '@/components/admin/OrderEditor/OrderEditor';
 import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react'
 import { BsCaretUpFill, BsCaretDownFill, BsCalendarHeart, BsCartCheck, BsFillReplyFill, BsXCircleFill, BsArrowUpSquare, BsBoxArrowRight } from "react-icons/bs";
-import { ThemeContext } from '../Context';
+import { OrderPanelSwitchContext, ThemeContext } from '../Context';
 import SearchBar from '@/components/admin/SearchBar/SearchBar';
 import Pagenation from '@/components/admin/Pagenation/Pagenation';
 
 const Page = () => {
+    const isOrderEditorOpen = useContext(OrderPanelSwitchContext);
     const [order, setOrder] = useState<OrderType | null>(null)
     return (
         <div className='w-full h-full flex'>
-            <div className='h-full w-2/3 flex flex-col justify-between px-2'>
+            <div className='h-full flex-1 flex flex-col justify-between px-2'>
                 <div className='h-1/2 w-full flex pb-4'> <ActiveOrders orderUpdateOnClick={setOrder} /></div>
-
                 <div className='h-1/2 w-full flex'><OrderHistory /></div>
             </div>
-            <div className='h-full w-1/3 flex px-2'><OrderEditor order={order} /></div>
+            {isOrderEditorOpen && <div className='h-full w-2/6 flex px-2'><OrderEditor order={order} /></div>}
 
         </div>
     )

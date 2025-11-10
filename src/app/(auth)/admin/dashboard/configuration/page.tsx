@@ -5,6 +5,8 @@ import Gallery from './Gallery'
 import About from './About'
 import Service from './Service'
 import Contact from './Contact'
+import Photography from './Photography'
+import Product from './Product'
 
 const Page = () => {
     const [currentTab, setCurrentTab] = useState<string>(TabTitles[0])
@@ -19,12 +21,12 @@ const Page = () => {
                         <p className="text-base text-white word-wrap">{tab}</p>
                     </li>
                 ))}
-                <li className='h-1 w-full border-2 border-white mt-12' />
+                <li className='h-1 w-full border-2 bg-white border-white rounded mt-12' />
                 <li
-                    className={'m-3 p-2 rounded-md cursor-pointer flex ' + ('appoinment' == currentTab ? 'bg-white/15 ' : 'hover:bg-white/15')}
-                    onClick={() => setCurrentTab('appoinment')}
+                    className={'m-3 p-2 rounded-md cursor-pointer flex ' + ('photography' == currentTab ? 'bg-white/15 ' : 'hover:bg-white/15')}
+                    onClick={() => setCurrentTab('photography')}
                 >
-                    <p className="text-base text-white word-wrap">{'appoinment'}</p>
+                    <p className="text-base text-white word-wrap">{'photography'}</p>
                 </li>
                 <li
                     className={'m-3 p-2 rounded-md cursor-pointer flex ' + ('product' == currentTab ? 'bg-white/15 ' : 'hover:bg-white/15')}
@@ -41,6 +43,8 @@ const Page = () => {
                         'ABOUT': <About />,
                         'SERVICE': <Service />,
                         'CONTACT': <Contact />,
+                        'photography': <Photography />,
+                        'product': <Product />,
                     }[currentTab]
                 }
             </div>

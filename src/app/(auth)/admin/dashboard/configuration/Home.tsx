@@ -34,7 +34,6 @@ const HomeTab = ({ tab }: { tab: number }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const theme = useContext(ThemeContext);
 
-  // const [imageFile, setImageFile] = useState<Blob|null>(null)
   const [image, setImage] = useState<string | null>(null)
   const [title, setTitle] = useState<string>('')
   const [description, setDescription] = useState<string>('')

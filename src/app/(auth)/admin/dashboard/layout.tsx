@@ -50,20 +50,20 @@ const ClientLayout = ({
                     {isCalendarOpen && <Calendar />}
                 </div>
                 <div className="w-8 h-full py-6 ml-2 flex flex-col space-y-4">
-                    <div className='flex flex-col bg-white/20 p-1 rounded-sm space-y-2'>
+                    <div className='flex flex-col bg-white/20 p-1 rounded-sm space-y-2' onClick={() => setIsCalendarOpen(!isCalendarOpen)}>
                         <BsCalendarHeart size={15} className="text-white" />
                         {isCalendarOpen ?
-                            <BsCaretRightFill size={15} className="cursor-pointer text-white" onClick={() => setIsCalendarOpen(false)} />
+                            <BsCaretRightFill size={15} className="cursor-pointer text-white" />
                             :
-                            <BsCaretLeftFill size={15} className="cursor-pointer text-white" onClick={() => setIsCalendarOpen(true)} />
+                            <BsCaretLeftFill size={15} className="cursor-pointer text-white" />
                         }
                     </div>
-                    <div className='flex flex-col bg-white/20 p-1 rounded-sm space-y-2'>
+                    <div className='flex flex-col bg-white/20 p-1 rounded-sm space-y-2' onClick={() => setIsOrderEditorOpen(!isOrderEditorOpen)}>
                         <BsBox2Heart size={15} className="text-white" />
                         {isOrderEditorOpen ?
-                            <BsCaretRightFill size={15} className="cursor-pointer text-white" onClick={() => setIsOrderEditorOpen(false)} />
+                            <BsCaretRightFill size={15} className="cursor-pointer text-white" />
                             :
-                            <BsCaretLeftFill size={15} className="cursor-pointer text-white" onClick={() => setIsOrderEditorOpen(true)} />
+                            <BsCaretLeftFill size={15} className="cursor-pointer text-white" />
                         }
                     </div>
                 </div>

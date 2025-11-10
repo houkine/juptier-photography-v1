@@ -1,21 +1,22 @@
 'use client'
 import OrderEditor, { EnquiryType } from '@/components/admin/OrderEditor/OrderEditor'
 import React, { Dispatch, SetStateAction, useContext, useState } from 'react'
-import { ThemeContext } from '../Context'
+import { OrderPanelSwitchContext, ThemeContext } from '../Context'
 import { BsCheckCircleFill, BsFillReplyFill, BsXCircleFill, BsCaretDownFill, BsCaretUpFill, BsCalendarHeart, BsCartCheck, BsArrowUpSquare } from 'react-icons/bs'
 import Pagenation from '@/components/admin/Pagenation/Pagenation'
 import SearchBar from '@/components/admin/SearchBar/SearchBar'
 
 const Page = () => {
+    const isOrderEditorOpen = useContext(OrderPanelSwitchContext);
     const [enquiry, setEnquiry] = useState<EnquiryType | null>(null)
     return (
         <div className='w-full h-full flex'>
-            <div className='h-full w-2/3 flex flex-col justify-between px-2'>
+            <div className='h-full flex-1 flex flex-col justify-between px-2'>
                 <div className='h-1/2 w-full flex pb-4'> <ComingEnquiries onOrderGenerate={setEnquiry} /></div>
 
                 <div className='h-1/2 w-full flex'><EnquiryHistory /></div>
             </div>
-            <div className='h-full w-1/3 flex px-2'><OrderEditor enquiry={enquiry} /></div>
+            {isOrderEditorOpen && <div className='h-full w-2/6 flex px-2'><OrderEditor enquiry={enquiry} /></div>}
 
         </div>
     )

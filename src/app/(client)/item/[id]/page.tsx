@@ -4,11 +4,7 @@ import { personalPhotographyPricelist } from "@/constant/shopPageContent";
 import React, { useState } from 'react'
 import { useParams, useRouter } from 'next/navigation';
 
-// const page = async ({
-//     params,
-// }: {
-//     params: Promise<{ id: number }>
-// }) => {
+
 const Page = () => {
     const [session, setSession] = useState('1')
     const [amount, setAmount] = useState('10')
@@ -36,8 +32,8 @@ const Page = () => {
                     <h1 className='text-xl font-bold mt-2'>{'$ ' + item.price}</h1>
                     <p className='text-base mt-4 whitespace-pre-wrap text-gray-800'>{item.description}</p>
                     <div className='mt-8'>
-                        <label className='text-base font-bold' htmlFor='session'>Session:</label>
-                        <select className='ml-4' id='session' value={session} onChange={e => setSession(e.target.value)}>
+                        <label className='text-base font-bold' htmlFor='type'>Type:</label>
+                        <select className='ml-4' id='type' value={session} onChange={e => setSession(e.target.value)}>
                             <option value="1">{'Please select...'}</option>
                             <option value="2">{'portrait'}</option>
                             <option value="3">{'individual indoor'}</option>
@@ -72,7 +68,6 @@ const Page = () => {
                         />
                     </div>
                     <div className='w-2/3 h-12 mt-6 flex font-bold justify-center items-center text-black border-2 border-gray-700 hover:bg-white' onClick={SubmitOnClick}>SUBMIT</div>
-                    {/* <Link href={'/service/personal'} className='w-2/3 h-12 mt-6 flex font-bold justify-center items-center text-black border-2 border-gray-700 hover:bg-white'>SUBMIT</Link> */}
 
                 </div>
             </div>

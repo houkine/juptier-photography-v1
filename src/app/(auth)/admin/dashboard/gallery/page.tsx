@@ -48,7 +48,7 @@ const Page = () => {
                         key={index}
                         onClick={() => HandleThemeOnClick(theme)}
                     >
-                        <p className="text-lg text-white word-wrap ">{theme.title}</p>
+                        <p className="text-base text-white word-wrap ">{theme.title}</p>
                     </li>
                 )}
                 <li
