@@ -65,7 +65,7 @@ const Page = () => {
                 <NumberInput label={'sequence'} value={sequence} OnChange={setSequence} classname='mt-2 w-full' />
                 <p className="text-2xl mt-4" title="only we can see this">description</p>
                 <textarea
-                    className="w-full h-24 bg-transparent border-2 border-gray-300 rounded-lg"
+                    className="w-full min-h-24 bg-transparent border-2 border-gray-300 rounded-lg"
                     value={description} onChange={e => setDescription(e.target.value)}
                 />
                 <p className='text-xl text-white mt-4'>Albums</p>
